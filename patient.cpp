@@ -1,9 +1,6 @@
 #include <bits/stdc++.h>
-#include "SQLite3.h"
 using namespace std;
 
-
-sqlite3* doctors;
 typedef struct Prescription{
 	int medicineID[10];
 	int quantity[10];

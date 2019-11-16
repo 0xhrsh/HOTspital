@@ -14,6 +14,10 @@ typedef struct login{
 }login;
 int main(){
 	ifstream fin;
+	// if(){
+	// 	cout<<"Database does not exist"<<endl;
+	// 	return -1;
+	// }
 	fin.open("admin/login.txt");
 	char username[20],password[20];
 	cout<<"Enter login username"<<endl;

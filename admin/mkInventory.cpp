@@ -18,12 +18,12 @@ int main(){
 	// The code below is to read the info (I made this to verify
 	// 	whether the above code works fine or not)
 
-	ifstream fin;
-	fin.open("inventory.txt");
-	for (int i = 0; i < 20; ++i){
-		fin.read(reinterpret_cast<char*>(&inv), sizeof(inventory));
-		cout<<inv.medicineId<<" "<<inv.Quantity<<endl;
-	}
+	// ifstream fin;
+	// fin.open("inventory.txt");
+	// for (int i = 0; i < 20; ++i){
+	// 	fin.read(reinterpret_cast<char*>(&inv), sizeof(inventory));
+	// 	cout<<inv.medicineId<<" "<<inv.Quantity<<endl;
+	// }
 
 	
 	return 0;

@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include "patient.cpp"
 using namespace std;
 int num(char* n){
 	if(*(n+1))
@@ -20,7 +21,7 @@ int main(){
 	// }
 	fin.open("admin/login.txt");
 	char username[20],password[20];
-	cout<<"Enter login username"<<endl;
+	cout<<"Enter Login Username"<<endl;
 	cin>>username;
 	cout<<"Enter Password"<<endl;
 	cin>>password;
@@ -42,9 +43,14 @@ int main(){
 			}
 		}
 	}
-	if(flag)
+	if(flag){
 		cout<<endl;
+		cout<<"You are a "<<l.role<<endl;
+		switch(l.role){
+			case 'P': hello();
+		}
 		// do something;
+	}
 	else
 		cout<<"Invalid details"<<endl;	
 	return 0;

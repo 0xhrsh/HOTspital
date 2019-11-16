@@ -6,13 +6,16 @@ typedef struct Doctor{
 	int quantity[10];
 }doctor;
 
+void hello(){
+	cout<<"Hello from the patient"<<endl;
+}
 
 class patient{
 protected:
 	int PhNum[10];
 	int emergency[10];
-	prescription p;
-	sqlite3* records;
+	//prescription p;
+	//sqlite3* records;
 public:
 	int name;
 	string LDAP;
@@ -21,12 +24,7 @@ public:
 		ifstream fin;
 		fin.open("admin/doctors.txt");
 		
-		int rc = sqlite3_exec(DB, sql.c_str(), callback, (void*)data.c_str(), NULL); 
-    	if (rc != SQLITE_OK) 
-        	cerr << "Error SELECT" << endl; 
-    	else{ 
-        	cout << "Operation OK!" << endl; 
-    	} 
+		//int rc = sqlite3_exec(DB, sql.c_str(), callback, (void*)data.c_str(), NULL); 
 
 	}
 	//~patient();
@@ -35,10 +33,3 @@ public:
 
 
 
-int main(){
-	patient harsh;
-	harsh.chooseDoctor()
-
-    	
-	return 0;
-}

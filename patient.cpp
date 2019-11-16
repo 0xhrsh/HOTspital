@@ -22,9 +22,12 @@ public:
 	patient();
 	int chooseDoctor(){
 		ifstream fin;
-		fin.open("admin/doctors.txt");
+		fin.open("admin/records/doctors.txt");
+		doctor d;
+		while(fin.read(reinterpret_cast<char*>(&l), sizeof(login))){
+			cout<<
+		}
 		
-		//int rc = sqlite3_exec(DB, sql.c_str(), callback, (void*)data.c_str(), NULL); 
 
 	}
 	//~patient();

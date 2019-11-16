@@ -13,7 +13,7 @@ typedef struct patient{
 int main(){
 	ofstream fout;
 	pat p;
-	fout.open("records.txt",ios::app);
+	fout.open("records/records.txt",ios::app);
 	for (int i = 0; i < 20; ++i){
 		p.ph=10*i+5;   //  Anything Random
 		p.emergency=i*100;  //  Random

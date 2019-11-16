@@ -9,7 +9,7 @@ typedef struct login{
 int main(){
 	ofstream fout;
 	login l;
-	fout.open("login.txt");
+	fout.open("records/login.txt");
 	for (int i = 0; i < 20; ++i){
 		l.role='P';
 		l.pass[0]=l.role;

@@ -19,7 +19,7 @@ int main(){
 	// 	cout<<"Database does not exist"<<endl;
 	// 	return -1;
 	// }
-	fin.open("admin/login.txt");
+	fin.open("admin/records/login.txt");
 	char username[20],password[20];
 	cout<<"Enter Login Username"<<endl;
 	cin>>username;

@@ -47,9 +47,12 @@ int main(){
 		cout<<endl;
 		cout<<"You are a "<<l.role<<endl;
 		switch(l.role){
-			case 'P': hello();
+			case 'P': {patientInit();break;}
+			case 'D': {docotorInit();break;}
+			case 'F': {pharmacistInit();break;}
+			case 'R': {receptionistInit();break;}
+			default: cout<<"Error: Executable not found"<<endl;
 		}
-		// do something;
 	}
 	else
 		cout<<"Invalid details"<<endl;	

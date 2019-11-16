@@ -47,10 +47,10 @@ int main(){
 		cout<<endl;
 		cout<<"You are a "<<l.role<<endl;
 		switch(l.role){
-			case 'P': {patientInit();break;}
-			case 'D': {docotorInit();break;}
-			case 'F': {pharmacistInit();break;}
-			case 'R': {receptionistInit();break;}
+			case 'P': {patientInit(num);break;}
+			case 'D': {docotorInit(num);break;}
+			case 'F': {pharmacistInit(num);break;}
+			case 'R': {receptionistInit(num);break;}
 			default: cout<<"Error: Executable not found"<<endl;
 		}
 	}

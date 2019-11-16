@@ -6,7 +6,7 @@ typedef struct Doctor{
 	int quantity[10];
 }doctor;
 
-void hello(){
+void patientInit(int num){
 	cout<<"Hello from the patient"<<endl;
 }
 

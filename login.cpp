@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include "patient.cpp"
+//#include "pharmacist.cpp"
 using namespace std;
 int num(char* n){
 	if(*(n+1))
@@ -14,11 +15,13 @@ typedef struct login{
 	int num;
 }login;
 int main(){
-	ifstream fin;
+	
 	// if(){
 	// 	cout<<"Database does not exist"<<endl;
 	// 	return -1;
 	// }
+	while(true){
+	ifstream fin;
 	fin.open("admin/records/login.txt");
 	char username[20],password[20];
 	cout<<"Enter Login Username"<<endl;
@@ -45,16 +48,17 @@ int main(){
 	}
 	if(flag){
 		cout<<endl;
-		cout<<"You are a "<<l.role<<endl;
+		//cout<<"You are a "<<l.role<<endl;
 		switch(l.role){
-			case 'P': {patientInit(num);break;}
-			case 'D': {docotorInit(num);break;}
-			case 'F': {pharmacistInit(num);break;}
-			case 'R': {receptionistInit(num);break;}
+			case 'P': {patientInit(l.num);break;}
+			//case 'D': {docotorInit(num);break;}
+			//case 'F': {pharmacistInit(num);break;}
+			//case 'R': {receptionistInit(num);break;}
 			default: cout<<"Error: Executable not found"<<endl;
 		}
 	}
 	else
 		cout<<"Invalid details"<<endl;	
+}
 	return 0;
 }

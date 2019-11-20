@@ -10,8 +10,8 @@ using namespace std;
 typedef struct Doctor{
 	int id;
 	char name[15];
-	char speciality[5];
-	//queue <int> patient;
+	char speciality[15];
+	deque <int> patient;
 	bool available;
 }doctor;
 
@@ -38,7 +38,7 @@ int chooseDoctor(){
 	for (int i = 0; i < 10; ++i){
 		fin.read(reinterpret_cast<char*>(&d), sizeof(doctor));
 		if(d.available)
-			cout<<d.name<<" "<<d.id<<" "<<endl;
+			cout<<d.id<<" "<<d.name<<" "<<d.speciality<<endl;
 	}
 }
 void error(int num){
@@ -46,7 +46,23 @@ void error(int num){
 	cout<<"Invalid Input"<<endl;
 }
 void takeAppointment(int num){
+	cout<<"Enter Id to choose doctor"
 	chooseDoctor();
+	int ind;
+	cin>>ind;
+
+	doctor d;
+	ofstream fout;
+	fout.open("admin/records/doctors.txt");
+	for (int i = 0; i < 10; ++i){
+		fout.read(reinterpret_cast<char*>(&d), sizeof(doctor));
+		if(d.id==ind){
+			d.patient.front();
+			d.patient.push_back(num);
+		}
+	}
+	d.patient.front();
+
 	return;
 }
 void onlineDiscussion(int num){

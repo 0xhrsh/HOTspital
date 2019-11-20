@@ -1,30 +1,29 @@
 #include <bits/stdc++.h>
-using namespace std;
+#include "Dclass.cpp"
+//using namespace std;
 
-
-// typedef struct Doctor{
-	
-// }doctor;
-
-class doctor{
-public:
-	int id;
-	char name[15];
-	char speciality[15];
-	bool available;
-	vector<int> patientQ();
-	Doctor();		
-};
+// DO NOT TAMPER WITH
 
 class patient{
 protected:
-	int PhNum[10];
-	int emergency[10];
-	//prescription p;
+	long ph;
+	long emergency;
+	char record[100];
+	int temp;
+	int weight;
+	char rRemarks[10];
+	char prescription[10];
 public:
-	int name;
-	string LDAP;
+	int LDAP;
+	char fname[10];
+	char lname[10];
 	patient(){};
+	patient(int x){
+		LDAP=x;
+	}
+	patient(string fx,string lx,int x){
+		LDAP=x; strcpy(fname,fx.c_str()); strcpy(lname,lx.c_str());
+	}
 	int chooseDoctor(){
 		doctor d;
 		ifstream fin;
@@ -50,6 +49,12 @@ public:
 	void onlineDiscussion(int p){
 		cout<<"OnlineDiscussion"<<endl;
 		return;
+	}
+	void setPh(long x){
+		ph=x;
+	}
+	void setEm(long x){
+		emergency=x;
 	}
 	//~patient();
 	

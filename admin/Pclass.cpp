@@ -31,13 +31,15 @@ public:
 		for (int i = 0; i < 10; ++i){
 			fin.read(reinterpret_cast<char*>(&d), sizeof(doctor));
 			if(d.available)
-				cout<<d.id<<" "<<d.name<<" "<<d.speciality<<endl;
+				cout<<d.LDAP<<" "<<d.name<<" "<<d.speciality<<endl;
 		}
 	}
 	void takeAppointment(int num){
 		cout<<"Enter Id to choose doctor"<<endl;
 		chooseDoctor();
 		int ind;
+		cout<<endl;
+		cout<<"Enter Id to choose doctor"<<endl;
 		cin>>ind;
 		doctor d;
 		ifstream fout;

@@ -2,10 +2,10 @@
 using namespace std;
 class doctor{
 public:
-	int id;
+	int LDAP;
 	char name[15];
 	char speciality[15];
 	bool available;
-	vector<int> patientQ();
+	//vector<int> patientQ();
 	Doctor();		
 };

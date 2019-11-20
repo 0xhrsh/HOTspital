@@ -1,16 +1,13 @@
-#include <iostream>  
-#include <string> 
 #include <bits/stdc++.h>
 #include "Dclass.cpp"
-//using namespace std; 
+using namespace std; 
 
 int main(int argc, char** argv){ 
 	doctor d;
 	ofstream fout;
 	fout.open("records/doctors.txt");
 	for (int i = 0; i < 10; ++i){
-		d.id=i+1;
-		//d.patient.push(d.id);
+		d.LDAP=i+1;
 		string temp="test";
 		strcpy(d.name,temp.c_str());
 		string speciality;
@@ -32,15 +29,15 @@ int main(int argc, char** argv){
 	// The code below is to read the info (I made this to verify
 	// 	whether the above code works fine or not)
 
-	// ifstream fin;
-	// fin.open("records/doctors.txt");
-	// for (int i = 0; i < 10; ++i){
-	// 	fin.read(reinterpret_cast<char*>(&d), sizeof(doctor));
-	// 	if(d.available){
-	// 	//int x=d.patient.back();
-	// 	cout<<d.name<<" "<<d.id<<" "<<d.speciality<<" "<<endl;
-	// 	}
-	// }
+	ifstream fin;
+	fin.open("records/doctors.txt");
+	for (int i = 0; i < 10; ++i){
+		fin.read(reinterpret_cast<char*>(&d), sizeof(doctor));
+		if(d.available){
+		//int x=d.patient.back();
+		cout<<d.name<<" "<<d.LDAP<<" "<<d.speciality<<" "<<endl;
+		}
+	}
 
 	
 	

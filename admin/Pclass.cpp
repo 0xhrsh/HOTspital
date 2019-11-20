@@ -11,8 +11,9 @@ protected:
 	char record[100];
 	int temp;
 	int weight;
-	char rRemarks[10];
-	char prescription[10];
+	char rRemarks[20];
+	char dRemarks[50];
+	int medicine[20][2];
 public:
 	int LDAP;
 	char fname[10];

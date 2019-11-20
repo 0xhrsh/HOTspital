@@ -1,77 +1,14 @@
 #include <bits/stdc++.h>
-using namespace std;
+#include "admin/updateQueue.cpp"
+//#include "classes.cpp"
+//using namespace std;
 
-// typedef struct Doctor{
-// 	int medicineID[10];
-// 	int quantity[10];
-// }doctor;
-
-
-typedef struct Doctor{
-	int id;
-	char name[15];
-	char speciality[15];
-	deque <int> patient;
-	bool available;
-}doctor;
-
-
-
-class patient{
-protected:
-	int PhNum[10];
-	int emergency[10];
-	//prescription p;
-	//sqlite3* records;
-public:
-	int name;
-	string LDAP;
-	patient();
-	//~patient();
-	
-};
-//patient p;
-int chooseDoctor(){
-	doctor d;
-	ifstream fin;
-	fin.open("admin/records/doctors.txt");
-	for (int i = 0; i < 10; ++i){
-		fin.read(reinterpret_cast<char*>(&d), sizeof(doctor));
-		if(d.available)
-			cout<<d.id<<" "<<d.name<<" "<<d.speciality<<endl;
-	}
-}
 void error(int num){
 	num++;
 	cout<<"Invalid Input"<<endl;
 }
-void takeAppointment(int num){
-	cout<<"Enter Id to choose doctor"
-	chooseDoctor();
-	int ind;
-	cin>>ind;
-
-	doctor d;
-	ofstream fout;
-	fout.open("admin/records/doctors.txt");
-	for (int i = 0; i < 10; ++i){
-		fout.read(reinterpret_cast<char*>(&d), sizeof(doctor));
-		if(d.id==ind){
-			d.patient.front();
-			d.patient.push_back(num);
-		}
-	}
-	d.patient.front();
-
-	return;
-}
-void onlineDiscussion(int num){
-	cout<<"onlineDiscussion"<<endl;
-	return;
-}
-
-void patientInit(int num){
-	// cout<<"Hello from the patient"<<endl;
+void patientInit(int num,patient* p){
+	//patient p;
 	//p.LDAP=num;
 	while(true){
 	char x;
@@ -82,9 +19,10 @@ void patientInit(int num){
 	cin>>x;
 	//cout<<cmd<<endl;
 	int cmd=x-'0';
+	//patient p;
 	switch(cmd){
-		case 1:{takeAppointment(num);patientInit(num);break;}
-		case 2:{onlineDiscussion(num);patientInit(num);break;}
+		case 1:{p->takeAppointment(num);break;}
+		case 2:{p->onlineDiscussion(num);break;}
 		case 3:{cout<<"Logged Out"<<endl;return;}
 		default: cout<<"Invalid Value"<<endl;
 	}

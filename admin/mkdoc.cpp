@@ -1,25 +1,18 @@
 #include <iostream>  
 #include <string> 
 #include <bits/stdc++.h>
-using namespace std; 
-typedef struct doctor
-{
-	int id;
-	char name[15];
-	char speciality[15];
-	//deque <int> patient;
-	bool available;
-}doc;
+#include "../classes.cpp"
+//using namespace std; 
+
 int main(int argc, char** argv){ 
-	doc d;
+	doctor d;
 	ofstream fout;
 	fout.open("records/doctors.txt");
 	for (int i = 0; i < 10; ++i){
 		d.id=i+1;
-		d.patient.push_back(i+1);
+		//d.patient.push(d.id);
 		string temp="test";
 		strcpy(d.name,temp.c_str());
-		//d.name[4]='\0';
 		string speciality;
 		if(i%3==0)
 			speciality="Bones";
@@ -32,20 +25,22 @@ int main(int argc, char** argv){
 			d.available=false;
 		else
 			d.available=true;
-		fout.write(reinterpret_cast<char*>(&d), sizeof(doc));
+		fout.write(reinterpret_cast<char*>(&d), sizeof(doctor));
 	}
 	fout.close();
 
 	// The code below is to read the info (I made this to verify
 	// 	whether the above code works fine or not)
 
-	ifstream fin;
-	fin.open("records/doctors.txt");
-	for (int i = 0; i < 10; ++i){
-		fin.read(reinterpret_cast<char*>(&d), sizeof(doc));
-		if(d.available)
-		cout<<d.name<<" "<<d.id<<" "<<d.speciality<<endl;
-	}
+	// ifstream fin;
+	// fin.open("records/doctors.txt");
+	// for (int i = 0; i < 10; ++i){
+	// 	fin.read(reinterpret_cast<char*>(&d), sizeof(doctor));
+	// 	if(d.available){
+	// 	//int x=d.patient.back();
+	// 	cout<<d.name<<" "<<d.id<<" "<<d.speciality<<" "<<endl;
+	// 	}
+	// }
 
 	
 	

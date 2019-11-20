@@ -50,7 +50,7 @@ int main(){
 		cout<<endl;
 		//cout<<"You are a "<<l.role<<endl;
 		switch(l.role){
-			case 'P': {patientInit(l.num);break;}
+			case 'P': {patient* p=new patient();patientInit(l.num,p);break;}
 			//case 'D': {docotorInit(num);break;}
 			//case 'F': {pharmacistInit(num);break;}
 			//case 'R': {receptionistInit(num);break;}

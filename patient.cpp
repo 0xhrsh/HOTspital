@@ -1,35 +1,31 @@
 #include <bits/stdc++.h>
-using namespace std;
+#include "admin/updateQueue.cpp"
+//#include "classes.cpp"
+//using namespace std;
 
-typedef struct Doctor{
-	int medicineID[10];
-	int quantity[10];
-}doctor;
-
-void patientInit(int num){
-	cout<<"Hello from the patient"<<endl;
+void error(int num){
+	num++;
+	cout<<"Invalid Input"<<endl;
 }
-
-class patient{
-protected:
-	int PhNum[10];
-	int emergency[10];
-	//prescription p;
-	//sqlite3* records;
-public:
-	int name;
-	string LDAP;
-	patient();
-	int chooseDoctor(){
-		ifstream fin;
-		fin.open("admin/doctors.txt");
-		
-		//int rc = sqlite3_exec(DB, sql.c_str(), callback, (void*)data.c_str(), NULL); 
-
+void patientInit(int num,patient* p){
+	//patient p;
+	//p.LDAP=num;
+	while(true){
+	char x;
+	cout<<"Press 1 to Take appointment"<<endl;
+	cout<<"Press 2 for online discussion"<<endl;
+	cout<<"Press 3 to logout"<<endl;
+    //cin.ignore(numeric_limits<streamsize>::max(),'\n'); 
+	cin>>x;
+	//cout<<cmd<<endl;
+	int cmd=x-'0';
+	//patient p;
+	switch(cmd){
+		case 1:{p->takeAppointment(num);break;}
+		case 2:{p->onlineDiscussion(num);break;}
+		case 3:{cout<<"Logged Out"<<endl;return;}
+		default: cout<<"Invalid Value"<<endl;
 	}
-	//~patient();
-	
-};
-
-
+}
+}
 

@@ -7,7 +7,7 @@ typedef struct Inventory{
 int main(){
 	ofstream fout;
 	inventory inv;
-	fout.open("inventory.txt");
+	fout.open("records/inventory.txt");
 	for (int i = 0; i < 20; ++i){
 		inv.medicineId=i+1;   //  Anything Random
 		inv.Quantity=i*100;  //  Random

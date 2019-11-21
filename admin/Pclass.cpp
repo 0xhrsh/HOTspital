@@ -14,7 +14,7 @@ void addToQueue(int num,int ind){
 	ifstream fin;
 	ofstream fout;
 	fin.open("admin/records/doctors.txt");
-	fout.open("admin/records/tempFiles/tempDoctors.txt");
+	fout.open("admin/records/tempDoctors.txt");
 	while(fin.read(reinterpret_cast<char*>(&d), sizeof(doctor))){
 		if(d.LDAP==ind){
 			//cout<<"Here";
@@ -29,7 +29,7 @@ void addToQueue(int num,int ind){
 	fin.close();fout.close();
 	//ifstream fin;
 	//ofstream fout;
-	fin.open("admin/records/tempFiles/tempDoctors.txt");
+	fin.open("admin/records/tempDoctors.txt");
 	fout.open("admin/records/doctors.txt");
 	while(fin.read(reinterpret_cast<char*>(&d), sizeof(doctor)))
 		fout.write(reinterpret_cast<char*>(&d), sizeof(doctor));

@@ -25,7 +25,7 @@ int main(){
 	ifstream fin;
 	fin.open("admin/records/login.txt");
 	char username[20],password[20];
-	cout<<"Enter Login Username"<<endl;
+	cout<<endl<<"Enter Login Username"<<endl;
 	cin>>username;
 	cout<<"Enter Password"<<endl;
 	cin>>password;

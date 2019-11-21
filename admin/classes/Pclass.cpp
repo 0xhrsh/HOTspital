@@ -6,8 +6,6 @@
 
 // DO NOT TAMPER WITH
 
-
-
 void addToQueue(int num,int ind){
 	//cout<<"here";
 	doctor d;
@@ -39,19 +37,18 @@ void addToQueue(int num,int ind){
 	// The code below is to test whether the queue update works 
 	// or not
 	
-	// fin.open("admin/records/doctors.txt");
-	// while(fin.read(reinterpret_cast<char*>(&d), sizeof(doctor))){
-	// 	int i=0;
-	// 	while(d.patientQ[i])
-	// 		cout<<d.patientQ[i++]<<" "<<d.LDAP;
-	// 	cout<<endl;
-	// }
+	fin.open("admin/records/doctors.txt");
+	while(fin.read(reinterpret_cast<char*>(&d), sizeof(doctor))){
+		int i=0;
+		if(ind==d.LDAP){
+			cout<<"Name added to queue"<<endl<<"Current Queue: ";
+			while(d.patientQ[i])
+				cout<<'P'<<d.patientQ[i++]<<" ";
+		}
+	}
+	cout<<endl;
 	fin.close();
-
-
 }
-
-
 class patient{
 protected:
 	long ph;
@@ -85,7 +82,7 @@ public:
 		fin.close();
 	}
 	void takeAppointment(int num){
-		cout<<"Enter Id to choose doctor"<<endl;
+		cout<<endl<<"Doctors Available"<<endl;
 		chooseDoctor();
 		int ind;
 		cout<<endl;

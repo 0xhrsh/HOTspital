@@ -3,14 +3,14 @@
 #include "admin/classes/Pclass.cpp"
 void error(int num){
 	num++;
-	cout<<"Invalid Input"<<endl;
+	cout<<endl<<"Invalid Input"<<endl;
 }
 void patientInit(int num,patient* p){
 	//patient p;
-	//p.LDAP=num;
+	p->LDAP=num;
 	while(true){
 	char x;
-	cout<<"Press 1 to Take appointment"<<endl;
+	cout<<endl<<"Press 1 to Take appointment"<<endl;
 	cout<<"Press 2 for online discussion"<<endl;
 	cout<<"Press 3 to logout"<<endl;
     //cin.ignore(numeric_limits<streamsize>::max(),'\n'); 

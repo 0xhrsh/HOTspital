@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include "patient.cpp"
+//#include "doctor.cpp"
 //#include "pharmacist.cpp"
 using namespace std;
 int num(char* n){
@@ -50,8 +51,9 @@ int main(){
 		cout<<endl;
 		//cout<<"You are a "<<l.role<<endl;
 		switch(l.role){
+			case 'D': {doctor* d=new doctor();doctorInit(l.num,d);break;}
 			case 'P': {patient* p=new patient();patientInit(l.num,p);break;}
-			//case 'D': {docotorInit(num);break;}
+			
 			//case 'F': {pharmacistInit(num);break;}
 			//case 'R': {receptionistInit(num);break;}
 			default: cout<<"Error: Executable not found"<<endl;

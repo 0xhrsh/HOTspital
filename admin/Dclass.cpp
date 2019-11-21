@@ -7,5 +7,8 @@ public:
 	char speciality[15];
 	bool available;
 	int patientQ[15];
-	doctor(){};		
+	doctor(){
+		for (int i = 0; i < 15; ++i)
+			patientQ[i]=0;
+	};		
 };

@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 //#include "admin/updateQueue.cpp"
-#include "admin/Pclass.cpp"
+#include "admin/classes/Pclass.cpp"
 void error(int num){
 	num++;
 	cout<<"Invalid Input"<<endl;

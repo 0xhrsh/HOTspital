@@ -1,10 +1,10 @@
 #include <bits/stdc++.h>
-#include "Pclass.cpp"
+#include "../classes/Pclass.cpp"
 using namespace std;
 int main(){
 	ofstream fout;
 	patient* p=new patient();
-	fout.open("records/records.txt");
+	fout.open("../records/records.txt");
 	for (int i = 0; i < 20; ++i){
 		p->setPh(10*i+5);   //  Anything Random
 		p->setEm(i*100);  //  Random
@@ -25,7 +25,7 @@ int main(){
 
 	// patient* p1=new patient();
 	// ifstream fin;
-	// fin.open("records/records.txt", ios::in);
+	// fin.open("../records/records.txt", ios::in);
 	// for (int i = 0; i < 20; ++i){
 	// 	fin.read(reinterpret_cast<char*>(p1), sizeof(patient));
 	// 	cout<<p1->fname<<" "<<p1->LDAP<<endl;

@@ -9,7 +9,7 @@ typedef struct login{
 int main(){
 	ofstream fout;
 	login l;
-	fout.open("records/login.txt");
+	fout.open("../records/login.txt");
 	for (int i = 0; i < 20; ++i){
 		l.role='P';
 		l.pass[0]=l.role;
@@ -53,12 +53,12 @@ int main(){
 	// 	whether the above code works fine or not)
 
 
-	// ifstream fin;
-	// fin.open("login.txt");
-	// for (int i = 0; i < 60; ++i){
-	// 	fin.read(reinterpret_cast<char*>(&l), sizeof(login));
-	// 	cout<<l.role<<l.num<<" "<<l.pass<<endl;
-	// }
+	ifstream fin;
+	fin.open("../records/login.txt");
+	for (int i = 0; i < 60; ++i){
+		fin.read(reinterpret_cast<char*>(&l), sizeof(login));
+		cout<<l.role<<l.num<<" "<<l.pass<<endl;
+	}
 
 	
 	return 0;

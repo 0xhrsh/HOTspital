@@ -7,7 +7,7 @@ class pharmacist
 	string pres(string pat)
 	{	
 		ifstream fin;
-		fin.open("admin/records.txt");
+		fin.open("admin/records/records.txt");
 		string str,pre;
 		do
 		{

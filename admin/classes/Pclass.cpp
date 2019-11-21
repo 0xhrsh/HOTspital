@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "../doctor.cpp"
+#include "../../doctor.cpp"
 //#include "updateQueue.cpp"
 //using namespace std;
 
@@ -14,7 +14,7 @@ void addToQueue(int num,int ind){
 	ifstream fin;
 	ofstream fout;
 	fin.open("admin/records/doctors.txt");
-	fout.open("admin/records/tempDoctors.txt");
+	fout.open("admin/records/tempFiles/tempDoctors.txt");
 	while(fin.read(reinterpret_cast<char*>(&d), sizeof(doctor))){
 		if(d.LDAP==ind){
 			//cout<<"Here";
@@ -29,7 +29,7 @@ void addToQueue(int num,int ind){
 	fin.close();fout.close();
 	//ifstream fin;
 	//ofstream fout;
-	fin.open("admin/records/tempDoctors.txt");
+	fin.open("admin/records/tempFiles/tempDoctors.txt");
 	fout.open("admin/records/doctors.txt");
 	while(fin.read(reinterpret_cast<char*>(&d), sizeof(doctor)))
 		fout.write(reinterpret_cast<char*>(&d), sizeof(doctor));
@@ -46,7 +46,7 @@ void addToQueue(int num,int ind){
 	// 		cout<<d.patientQ[i++]<<" "<<d.LDAP;
 	// 	cout<<endl;
 	// }
-	// fin.close();
+	fin.close();
 
 
 }

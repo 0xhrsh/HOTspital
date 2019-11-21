@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "admin/Dclass.cpp"
+#include "admin/classes/Dclass.cpp"
 
 /*void error(int num){
 	num++;

@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "Dclass.cpp"
+#include "../doctor.cpp"
 //#include "updateQueue.cpp"
 //using namespace std;
 

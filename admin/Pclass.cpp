@@ -1,8 +1,52 @@
 #include <bits/stdc++.h>
+
 #include "Dclass.cpp"
+//#include "updateQueue.cpp"
 //using namespace std;
 
 // DO NOT TAMPER WITH
+
+
+
+void addToQueue(int num,int ind){
+	doctor d;
+	ifstream fin;
+	ofstream fout;
+	fin.open("records/doctors.txt");
+	fout.open("records/tempDoctors.txt");
+	while(fin.read(reinterpret_cast<char*>(&d), sizeof(doctor))){
+		if(d.LDAP==ind){
+			cout<<"Here";
+			int i=0;
+			while(d.patientQ[i]!=0)i++;
+			d.patientQ[i]=num;
+			if(i==14)
+				d.available=false;
+		}
+		fout.write(reinterpret_cast<char*>(&d), sizeof(doctor));
+	}
+	fin.close();fout.close();
+	//ifstream fin;
+	//ofstream fout;
+	fin.open("records/tempDoctors.txt");
+	fout.open("records/doctors.txt");
+	while(fin.read(reinterpret_cast<char*>(&d), sizeof(doctor)))
+		fout.write(reinterpret_cast<char*>(&d), sizeof(doctor));
+	fin.close();fout.close();
+	
+
+	fin.open("records/doctors.txt");
+	while(fin.read(reinterpret_cast<char*>(&d), sizeof(doctor))){
+		int i=0;
+		while(d.patientQ[i])
+			cout<<d.patientQ[i++]<<" ";
+		cout<<endl;
+	}
+	fin.close();
+
+
+}
+
 
 class patient{
 protected:
@@ -34,6 +78,7 @@ public:
 			if(d.available)
 				cout<<d.LDAP<<" "<<d.name<<" "<<d.speciality<<endl;
 		}
+		fin.close();
 	}
 	void takeAppointment(int num){
 		cout<<"Enter Id to choose doctor"<<endl;
@@ -43,9 +88,7 @@ public:
 		cout<<"Enter Id to choose doctor"<<endl;
 		cin>>ind;
 		doctor d;
-		ifstream fout;
-		fout.open("admin/records/doctors.txt");
-		//addToQueue(num,ind);
+		addToQueue(num,ind);
 		//d.patientQ.back();
 		return;
 	}

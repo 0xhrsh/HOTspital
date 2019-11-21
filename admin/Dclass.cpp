@@ -6,6 +6,6 @@ public:
 	char name[15];
 	char speciality[15];
 	bool available;
-	//vector<int> patientQ();
-	Doctor();		
+	int patientQ[15];
+	doctor(){};		
 };

@@ -36,14 +36,17 @@ void addToQueue(int num,int ind){
 	fin.close();fout.close();
 	
 
-	fin.open("admin/records/doctors.txt");
-	while(fin.read(reinterpret_cast<char*>(&d), sizeof(doctor))){
-		int i=0;
-		while(d.patientQ[i])
-			cout<<d.patientQ[i++]<<" "<<d.LDAP;
-		cout<<endl;
-	}
-	fin.close();
+	// The code below is to test whether the queue update works 
+	// or not
+	
+	// fin.open("admin/records/doctors.txt");
+	// while(fin.read(reinterpret_cast<char*>(&d), sizeof(doctor))){
+	// 	int i=0;
+	// 	while(d.patientQ[i])
+	// 		cout<<d.patientQ[i++]<<" "<<d.LDAP;
+	// 	cout<<endl;
+	// }
+	// fin.close();
 
 
 }

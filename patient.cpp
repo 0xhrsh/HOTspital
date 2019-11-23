@@ -10,14 +10,16 @@ void error(int num){
 int chooseDoctor(){
 	cout<<"choosing doctors";
 	doctor d;
+	
 	ifstream fin;
 	fin.open("admin/records/doctors.txt");
 	for (int i = 0; i < 10; ++i){
 		fin.read(reinterpret_cast<char*>(&d), sizeof(doctor));
-		if(d.available)
-			cout<<d.LDAP<<" "<<d.name<<" "<<d.speciality<<endl;
+		if(d.available){
+		//int x=d.patient.back();
+		cout<<d.name<<" "<<d.LDAP<<" "<<d.speciality<<" "<<endl;
+		}
 	}
-	fin.close();
 }
 
 

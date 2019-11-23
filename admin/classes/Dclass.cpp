@@ -9,10 +9,7 @@ public:
 	char speciality[15];
 	bool available;
 	int patientQ[15];
-	doctor(){
-		for (int i = 0; i < 15; ++i)
-			patientQ[i]=0;
-	};
+	doctor(){};
 
 	void onlineDiscussion(int p){
 		cout<<"OnlineDiscussion"<<endl;

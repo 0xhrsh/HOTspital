@@ -29,20 +29,8 @@ public:
 	}
 
 
-	virtual int chooseDoctor(){};
-
-	void takeAppointment(int num){
-		cout<<endl<<"Doctors Available"<<endl;
-		chooseDoctor();
-		int ind;
-		cout<<endl;
-		cout<<"Enter Id to choose doctor"<<endl;
-		cin>>ind;
-		//doctor d;
-		addToQueue(num,ind);
-		//d.patientQ.back();
-		return;
-	}
+	friend int chooseDoctor();//{cout<<"inside virtual"<<endl;};
+	friend void takeAppointment(int num);//{cout<<"takeAppointment virtual"<<endl;}
 	void onlineDiscussion(int p){
 		cout<<"OnlineDiscussion"<<endl;
 		return;

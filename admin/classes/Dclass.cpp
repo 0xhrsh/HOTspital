@@ -19,17 +19,17 @@ public:
 		return;
 	}	
 	void treatPatients(){
-		pLDAP=nextPatient();
-		if(patient==0)
+		int pLDAP=nextPatient();
+		if(pLDAP==0)
 			return;
 		patient p(pLDAP);
-		writePrescription(patient p);
+		writePrescription(p);
 		cout<<"Medical Leave Required"<<endl;
 		bool leave;
 		cin>>leave;
 		if(leave)
-			notifyAdmin();
-		updateRecords();
+			//notifyAdmin();
+		//updateRecords();
 		return;
 	}
 

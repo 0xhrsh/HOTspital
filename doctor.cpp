@@ -8,6 +8,14 @@
 
 
 void doctorInit(int num,doctor* d){
+	
+	ifstream fin;
+	fin.open("admin/records/doctors.txt");
+	for (int i = 0; i < 10; ++i){
+		fin.read(reinterpret_cast<char*>(d), sizeof(doctor));
+		if(d->LDAP==num)
+			break;
+	}
 	while(true){
 	char x;
 	cout<<"Press 1 to Treat patients"<<endl;

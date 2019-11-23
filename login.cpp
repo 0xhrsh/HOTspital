@@ -1,27 +1,20 @@
 #include <bits/stdc++.h>
 #include "patient.cpp"
-//#include "doctor.cpp"
-//using namespace std;
 int num(char* n){
 	if(*(n+1))
 		return (*n-'0')*10 + *(n+1)-'0';
 	else
 		return *n-'0';
 }
-
 typedef struct login{
 	char role;
 	char pass[20];
 	int num;
 }login;
-
-
-
 typedef struct Inventory{
 	int medicineId;
 	int Quantity;
 }inventory;
-
 void writePrescription(patient p){
 		int med,quant;
 		inventory ik;
@@ -37,27 +30,8 @@ void writePrescription(patient p){
 			}
 			cin>>med>>quant;
 	}
-
-	// inventory inv;
-	// ifstream fin;
-	// fin.open("admin/records/inventory.txt");
-	// for (int i = 0; i < 20; ++i){
-	// 	fin.read(reinterpret_cast<char*>(&inv), sizeof(inventory));
-	// 	cout<<inv.medicineId<<" "<<inv.Quantity<<endl;
-	// }
-
-
 }
-
-
-
-
 int main(){
-	
-	// if(){
-	// 	cout<<"Database does not exist"<<endl;
-	// 	return -1;
-	// }
 	while(true){
 	ifstream fin;
 	fin.open("admin/records/login.txt");
@@ -86,11 +60,9 @@ int main(){
 	}
 	if(flag){
 		cout<<endl;
-		//cout<<"You are a "<<l.role<<endl;
 		switch(l.role){
 			case 'D': {doctor* d=new doctor();doctorInit(l.num,d);break;}
 			case 'P': {patient* p=new patient();patientInit(l.num,p);break;}
-			
 			//case 'F': {pharmacistInit(num);break;}
 			//case 'R': {receptionistInit(num);break;}
 			default: cout<<"Error: Executable not found"<<endl;

@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
-
+#include "../../receptionist.cpp"
 //#include "../../doctor.cpp"
 //#include "updateQueue.cpp"
-//using namespace std;
+using namespace std;
 
 // DO NOT TAMPER WITH
 

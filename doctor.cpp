@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 
 #include "admin/classes/Dclass.cpp"
-
 /*void error(int num){
 	num++;
 	cout<<"Invalid Input"<<endl;

@@ -1,7 +1,8 @@
 #include <bits/stdc++.h>
+#include "Pclass.cpp"
 using namespace std;
 
-class doctor{
+class doctor: virtual public patient{
 public:
 	int LDAP;
 	char name[15];
@@ -18,14 +19,30 @@ public:
 		return;
 	}	
 	void treatPatients(){
-		if(patientQ[0]==0) return ;
-		else {
-			for(int i=0;i<14;i++)
-			{
-				patientQ[i]=patientQ[i+1];
-			}
-			patientQ[14]=0;
-		}
-				
+		pLDAP=nextPatient();
+		if(patient==0)
+			return;
+		patient p(pLDAP);
+		writePrescription(patient p);
+		cout<<"Medical Leave Required"<<endl;
+		bool leave;
+		cin>>leave;
+		if(leave)
+			notifyAdmin();
+		updateRecords();
+		return;
+	}
+
+	void writePrescription(patient p){
+		
+	}
+
+	int nextPatient(){
+		int next=patientQ[0];
+		for(int i=0;i<13;i++)
+			patientQ[i]=patientQ[i+1];
+		patientQ[14]=0;
+		available=1;
+		return next;
 	}
 };

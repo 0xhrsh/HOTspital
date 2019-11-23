@@ -34,8 +34,22 @@ public:
 	}
 
 	void writePrescription(patient p){
-
+		int med,quant;
+		Invetory ik;
+		ifstream fin;
+		fin.open("../records/inventory.txt");
+		cin>>med>>quant;
+		for (int i = 0; quant>0 && i<20;){
+			fin.read(reinterpret_cast<char*>(&d), sizeof(Inventory));
+			if(ik.Quantity>0){
+				i++;
+				p.medicineId[med][0]=med;
+				p.medicine[med][1]=quant;	
+			}
+			cin>>med>>quant;
 	}
+
+	
 
 	int nextPatient(){
 		int next=patientQ[0];

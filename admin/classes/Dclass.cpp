@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 #include "Pclass.cpp"
-#include "../mkrecords/mkinventory.cpp"
 using namespace std;
 
 
@@ -44,22 +43,7 @@ public:
 		return;
 	}
 
-	void writePrescription(patient p){
-		int med,quant;
-		inventory ik;
-		ifstream fin;
-		fin.open("../records/inventory.txt");
-		cin>>med>>quant;
-		for (int i = 0; quant>0 && i<20;){
-			fin.read(reinterpret_cast<char*>(&ik), sizeof(Inventory));
-			if(ik.Quantity>0){
-				i++;
-				p.medicine[med][0]=med;
-				p.medicine[med][1]=quant;	
-			}
-			cin>>med>>quant;
-	}
-
+	friend void writePrescription(patient p);   //  IN LOGIN.CPP
 	
 
 	

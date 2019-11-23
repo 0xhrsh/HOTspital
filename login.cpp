@@ -17,6 +17,41 @@ typedef struct login{
 
 
 
+typedef struct Inventory{
+	int medicineId;
+	int Quantity;
+}inventory;
+
+void writePrescription(patient p){
+		int med,quant;
+		inventory ik;
+		ifstream fin;
+		fin.open("admin/records/inventory.txt");
+		cin>>med>>quant;
+		for (int i = 0; quant>0 && i<20;){
+			fin.read(reinterpret_cast<char*>(&ik), sizeof(inventory));
+			if(ik.Quantity>0){
+				i++;
+				p.medicine[med][0]=med;
+				p.medicine[med][1]=quant;	
+			}
+			cin>>med>>quant;
+	}
+
+	// inventory inv;
+	// ifstream fin;
+	// fin.open("admin/records/inventory.txt");
+	// for (int i = 0; i < 20; ++i){
+	// 	fin.read(reinterpret_cast<char*>(&inv), sizeof(inventory));
+	// 	cout<<inv.medicineId<<" "<<inv.Quantity<<endl;
+	// }
+
+
+}
+
+
+
+
 int main(){
 	
 	// if(){

@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include "patient.cpp"
+//#include "doctor.cpp"
 using namespace std;
 int num(char* n){
 	if(*(n+1))
@@ -15,17 +16,6 @@ typedef struct login{
 }login;
 
 
-int chooseDoctor(){
-	doctor d;
-	ifstream fin;
-	fin.open("admin/records/doctors.txt");
-	for (int i = 0; i < 10; ++i){
-		fin.read(reinterpret_cast<char*>(&d), sizeof(doctor));
-		if(d.available)
-			cout<<d.LDAP<<" "<<d.name<<" "<<d.speciality<<endl;
-	}
-	fin.close();
-}
 
 int main(){
 	

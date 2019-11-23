@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 //#include "admin/updateQueue.cpp"
-#include "doctor.cpp"
+#include "receptionist.cpp"
 void error(int num){
 	num++;
 	cout<<endl<<"Invalid Input"<<endl;

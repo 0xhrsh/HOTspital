@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #include "patient.cpp"
 //#include "doctor.cpp"
-using namespace std;
+//using namespace std;
 int num(char* n){
 	if(*(n+1))
 		return (*n-'0')*10 + *(n+1)-'0';

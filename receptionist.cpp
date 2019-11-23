@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
-using namespace std;
+#include "doctor.cpp"
+//using namespace std;
 
 void addToQueue(int num,int ind){
 	//cout<<"here";

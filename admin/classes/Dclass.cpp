@@ -2,12 +2,9 @@
 #include "Pclass.cpp"
 using namespace std;
 
-
-
-
 class doctor: virtual public patient{
 private:
-	removeFromQueue(LDAP)
+	//removeFromQueue(LDAP);
 public:
 	int LDAP;
 	char name[15];
@@ -22,6 +19,29 @@ public:
 		LDAP=x;
 		for (int i = 0; i < 15; ++i)
 			patientQ[i]=0;	
+	}
+
+	void updateRecords(patient p){
+		
+	}
+
+
+
+
+
+	void notifyAdmin(int x){
+		struct leave{
+			int patientLDAP,startingDate,startingMonth,endDate,endMonth;
+		}s;
+		s.patientLDAP=x;
+		cout<<"Starting date (DD,MM): "<<endl;
+		cin>>s.startingDate>>s.startingMonth;
+		cout<<"End date (DD,MM): "<<endl;
+		cin>>s.endDate>>s.endMonth;
+		ofstream fout;
+		fout.open("admin/records/leave.txt",ios_base::app);
+		fout.write(reinterpret_cast<char*>(&s), sizeof(leave));
+		fout.close();
 	}
 
 	int nextPatient(){
@@ -45,19 +65,17 @@ public:
 			cout<<"No patients in the queue"<<endl;
 			return;
 		}
-		patient p(pLDAP);
-		//writePrescription(p);
-		//cout<<"Medical Leave Required"<<endl;
-		//bool leave;
-		//cin>>leave;
-		//if(leave)
-			//notifyAdmin();
-		//updateRecords();
+		patient* p=new patient(pLDAP);
+		p=writePrescription(p);
+		cout<<"Medical Leave Required?"<<endl;
+		bool leave;
+		cin>>leave;
+		if(leave)
+			notifyAdmin(pLDAP);
+		updateRecords(p);
 		return;
 	}
 
-	friend void writePrescription(patient p);   //  IN LOGIN.CPP
-	
-
+	friend patient* writePrescription(patient* p);   //  IN LOGIN.CPP
 	
 };

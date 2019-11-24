@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "patient.cpp"
+#include "pharmacist.cpp"
 int num(char* n){
 	if(*(n+1))
 		return (*n-'0')*10 + *(n+1)-'0';
@@ -11,24 +11,21 @@ typedef struct login{
 	char pass[20];
 	int num;
 }login;
-typedef struct Inventory{
-	int medicineId;
-	int Quantity;
-}inventory;
-void writePrescription(patient p){
+patient* writePrescription(patient* p){
 		int med,quant;
 		inventory ik;
 		ifstream fin;
 		fin.open("admin/records/inventory.txt");
+		cout<<"Enter Medicine ID and Quantity: "<<endl;
 		cin>>med>>quant;
 		for (int i = 0; quant>0 && i<20;){
 			fin.read(reinterpret_cast<char*>(&ik), sizeof(inventory));
-			if(ik.Quantity>0){
-				i++;
-				p.medicine[med][0]=med;
-				p.medicine[med][1]=quant;	
+			if(ik.Quantity>=quant){
+				p->medicine[i][0]=med;
+				p->medicine[i++][1]=quant;
 			}
 			cin>>med>>quant;
+		return p;
 	}
 }
 int main(){
@@ -63,7 +60,7 @@ int main(){
 		switch(l.role){
 			case 'D': {doctor* d=new doctor();doctorInit(l.num,d);break;}
 			case 'P': {patient* p=new patient();patientInit(l.num,p);break;}
-			//case 'F': {pharmacistInit(num);break;}
+			case 'F': {pharmacist* f=new pharmacist();pharmacistInit(l.num,f);break;}
 			//case 'R': {receptionistInit(num);break;}
 			default: cout<<"Error: Executable not found"<<endl;
 		}

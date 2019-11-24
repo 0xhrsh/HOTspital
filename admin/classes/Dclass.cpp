@@ -6,6 +6,8 @@ using namespace std;
 
 
 class doctor: virtual public patient{
+private:
+	removeFromQueue(LDAP)
 public:
 	int LDAP;
 	char name[15];
@@ -16,6 +18,11 @@ public:
 		for (int i = 0; i < 15; ++i)
 			patientQ[i]=0;
 	};
+	doctor(int x){
+		LDAP=x;
+		for (int i = 0; i < 15; ++i)
+			patientQ[i]=0;	
+	}
 
 	int nextPatient(){
 

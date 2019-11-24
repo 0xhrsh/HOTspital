@@ -27,7 +27,8 @@ public:
 	patient(string fx,string lx,int x){
 		LDAP=x; strcpy(fname,fx.c_str()); strcpy(lname,lx.c_str());
 	}
-
+	friend void maintainInventory(patient* p);
+	friend patient* findPrescription(int LDAP);
 	friend void writePrescription(patient p);
 	friend int chooseDoctor();//{cout<<"inside virtual"<<endl;};
 	friend void takeAppointment(int num);//{cout<<"takeAppointment virtual"<<endl;}

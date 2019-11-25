@@ -21,14 +21,25 @@ public:
 			patientQ[i]=0;	
 	}
 
-	void updateRecords(patient p){
-		
+	void updateRecords(patient* p){
+		ifstream fin;
+		ofstream fout;
+		patient* p1;
+		fin.open("../records/records.txt");
+		fout.open("../records/tempFiles/tempRecords.txt");
+		while(fin.read(reinterpret_cast<char*>(p1), sizeof(patient)))
+			if(p1->LDAP==p->LDAP)
+				fout.write(reinterpret_cast<char*>(p), sizeof(patient));
+			else
+				fout.write(reinterpret_cast<char*>(p1), sizeof(patient));
+		fin.close();fout.close();
+		fin.open("../records/tempFiles/tempRecords.txt");
+		fout.open("../records/records.txt");
+		while(fin.read(reinterpret_cast<char*>(p1), sizeof(patient)))
+			fout.write(reinterpret_cast<char*>(p1), sizeof(patient));
+		fin.close();fout.close();
+		return;				
 	}
-
-
-
-
-
 	void notifyAdmin(int x){
 		struct leave{
 			int patientLDAP,startingDate,startingMonth,endDate,endMonth;
@@ -44,38 +55,43 @@ public:
 		fout.close();
 	}
 
-	int nextPatient(){
+	patient* nextPatient(patient* p){
 
 		int next=patientQ[0];
-		for(int i=0;i<13;i++)
-			patientQ[i]=patientQ[i+1];
-		patientQ[14]=0;
-		available=1;
-		return next;
+		if(next==0)
+			return NULL;
+		ifstream fin;
+		fin.open("../records/records.txt");
+		while(fin.read(reinterpret_cast<char*>(p), sizeof(patient)))
+			if(p->LDAP==next)
+				return p;
+		
 	}
 
 	void onlineDiscussion(int p){
-		cout<<"OnlineDiscussion"<<endl;
+		cout<<"Online Discussion"<<endl;
 		return;
 	}	
 	void treatPatients(){
-		int pLDAP=nextPatient();
-		cout<<pLDAP<<endl;
-		if(pLDAP==0){
+		
+		patient* p=new patient();
+		p=nextPatient(p);
+		cout<<endl<<"Next Patient: "<<'P'<<p->LDAP<<endl;
+		if(p==NULL){
 			cout<<"No patients in the queue"<<endl;
 			return;
 		}
-		patient* p=new patient(pLDAP);
+		
+
 		p=writePrescription(p);
 		cout<<"Medical Leave Required?"<<endl;
 		bool leave;
 		cin>>leave;
 		if(leave)
-			notifyAdmin(pLDAP);
+			notifyAdmin(p->LDAP);
 		updateRecords(p);
 		return;
 	}
-
 	friend patient* writePrescription(patient* p);   //  IN LOGIN.CPP
 	
 };

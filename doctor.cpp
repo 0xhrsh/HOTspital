@@ -3,15 +3,16 @@
 
 
 void doctorInit(int num,doctor* d){
-	
 	ifstream fin;
+	ofstream fout;
+	while(true){	
 	fin.open("admin/records/doctors.txt");
 	for (int i = 0; i < 10; ++i){
 		fin.read(reinterpret_cast<char*>(d), sizeof(doctor));
 		if(d->LDAP==num)
 			break;
 	}
-	while(true){
+	fin.close();
 	char x;
 	cout<<"Press 1 to Treat patients"<<endl;
 	cout<<"Press 2 for online discussion"<<endl;
@@ -19,10 +20,28 @@ void doctorInit(int num,doctor* d){
 	cin>>x;
 	int cmd=x-'0';
 	switch(cmd){
-		case 1:{d->treatPatients();break;}
+		case 1:{d->treatPatients();/*pushQ();*/break;}
 		case 2:{d->onlineDiscussion(num);break;}
 		case 3:{cout<<"Logged Out"<<endl;return;}
 		default: cout<<"Invalid Value"<<endl;
 	}
+	doctor* d1;
+	fin.open("admin/records/doctors.txt");
+	fout.open("admin/records/tempFiles/tempDoctors.txt");
+	while (fin.read(reinterpret_cast<char*>(d1), sizeof(doctor))){
+		if(d1->LDAP==num){
+			for(int i=0;i<13;i++)
+				d1->patientQ[i]=d1->patientQ[i+1];
+				d1->patientQ[14]=0;
+				d1->available=1;
+			}
+		fout.write(reinterpret_cast<char*>(d1), sizeof(doctor));
+	}
+	fin.close();fout.close();
+	fin.open("admin/records/tempFiles/tempDoctors.txt");
+	fout.open("admin/records/doctors.txt");
+	while(fin.read(reinterpret_cast<char*>(d1), sizeof(doctor)))
+		fout.write(reinterpret_cast<char*>(d1), sizeof(doctor));
+	fin.close();fout.close();
 }
 }

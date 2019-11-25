@@ -38,6 +38,7 @@ int main(int argc, char** argv){
 		cout<<d.name<<" "<<d.LDAP<<" "<<d.speciality<<" "<<endl;
 		}
 	}
+	fin.close();
 
 	
 	

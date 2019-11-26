@@ -16,18 +16,24 @@ patient* writePrescription(patient* p){
 		int med,quant;
 		inventory ik;
 		ifstream fin;
-		fin.open("admin/records/inventory.txt");
+		
 		cout<<"Enter Medicine ID and Quantity: "<<endl;
 		cin>>med>>quant;
 		for (int i = 0; quant>0 && i<20;){
-			fin.read(reinterpret_cast<char*>(&ik), sizeof(inventory));
+			fin.open("admin/records/inventory.txt");
+			while(fin.read(reinterpret_cast<char*>(&ik), sizeof(inventory)))
+				if(ik.medicineId==med)
+					break;
+			fin.close();
 			if(ik.Quantity>=quant){
 				p->medicine[i][0]=med;
 				p->medicine[i++][1]=quant;
 			}
+			else
+				cout<<med<<" is insufficient"<<endl;
 			cin>>med>>quant;
+		}
 		return p;
-	}
 }
 int main(){
 	while(true){

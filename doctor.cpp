@@ -1,7 +1,14 @@
 #include <bits/stdc++.h>
 #include "admin/classes/Dclass.cpp"
 
+void displayMedicalRecord(patient* p){
+	ifstream fin;
+	inventory in;
+			fin.open("admin/records/inventory.txt");
+			while(fin.read(reinterpret_cast<char*>(&in), sizeof(inventory)))
+				cout<<"Medicine Id: "<<in.medicineId<<" Quantity: "<<in.Quantity<<endl;
 
+}
 
 void notifyAdmin(int pldap){
 	typedef struct leave{
@@ -53,6 +60,7 @@ void treatPatients(doctor* d){
 	}
 	cout<<endl<<"Next Patient: "<<'P'<<p->LDAP<<endl;
 	p=writePrescription(p);
+	displayMedicalRecord(p);
 	cout<<"Medical Leave Required?"<<endl;
 	bool leave;
 	cin>>leave;

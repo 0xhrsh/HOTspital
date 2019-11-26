@@ -58,14 +58,21 @@ public:
 	patient* nextPatient(patient* p){
 
 		int next=patientQ[0];
+		cout<<"this is next "<<next<<endl;
+		int i=0;
+		while(patientQ[i])
+			cout<<patientQ[i++]<<" ";
 		if(next==0)
 			return NULL;
 		ifstream fin;
+		patient* pt=new patient();
 		fin.open("../records/records.txt");
-		while(fin.read(reinterpret_cast<char*>(p), sizeof(patient)))
-			if(p->LDAP==next)
-				return p;
-		
+		cout<<"here-->"<<fin.read(reinterpret_cast<char*>(pt), sizeof(patient));
+		while(fin.read(reinterpret_cast<char*>(pt), sizeof(patient)))
+			if(p->LDAP==next){
+				cout<<next;
+				return pt;
+			}	
 	}
 
 	void onlineDiscussion(int p){
@@ -76,11 +83,11 @@ public:
 		
 		patient* p=new patient();
 		p=nextPatient(p);
-		cout<<endl<<"Next Patient: "<<'P'<<p->LDAP<<endl;
 		if(p==NULL){
 			cout<<"No patients in the queue"<<endl;
 			return;
 		}
+		cout<<endl<<"Next Patient: "<<'P'<<p->LDAP<<endl;
 		
 
 		p=writePrescription(p);

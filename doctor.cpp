@@ -35,10 +35,11 @@ void doctorInit(int num,doctor* d){
 		fin.read(reinterpret_cast<char*>(d1), sizeof(doctor));
 		//cout<<"Updating records";
 		if(d1->LDAP==num){
-			for(int i=0;i<13;i++)
+			for(int i=0;i<=13;i++)
 				d1->patientQ[i]=d1->patientQ[i+1];
-				d1->patientQ[14]=0;
-				d1->available=1;
+			d1->patientQ[14]=0;
+			//cout<<"pQ 14: "<<d1->patientQ[14]<<endl;
+			d1->available=1;
 			}
 		fout.write(reinterpret_cast<char*>(d1), sizeof(doctor));
 	}
@@ -48,6 +49,6 @@ void doctorInit(int num,doctor* d){
 	while(fin.read(reinterpret_cast<char*>(d1), sizeof(doctor)))
 		fout.write(reinterpret_cast<char*>(d1), sizeof(doctor));
 	fin.close();fout.close();
-	
+
 }
 }

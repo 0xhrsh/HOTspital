@@ -2,7 +2,7 @@
 #include "Pclass.cpp"
 using namespace std;
 
-class doctor: virtual public patient{
+class doctor:virtual public patient{
 private:
 	//removeFromQueue(LDAP);
 public:
@@ -46,33 +46,26 @@ public:
 		}s;
 		s.patientLDAP=x;
 		cout<<"Starting date (DD,MM): "<<endl;
-		cin>>s.startingDate>>s.startingMonth;
+		//cin>>s.startingDate>>s.startingMonth;
 		cout<<"End date (DD,MM): "<<endl;
-		cin>>s.endDate>>s.endMonth;
+		//cin>>s.endDate>>s.endMonth;
 		ofstream fout;
 		fout.open("admin/records/leave.txt",ios_base::app);
-		fout.write(reinterpret_cast<char*>(&s), sizeof(leave));
+		//string s2="reinterpret_cast<char*>(&s), sizeof(leave)";
+		cout<<fout.write(reinterpret_cast<char*>(&s),sizeof(s));
 		fout.close();
+		ifstream fin;
+		fin.open("admin/records/leave.txt");
+		cout<<"leave here----> "<<fin.read(reinterpret_cast<char*>(&s), sizeof(leave));
+		fin.close();
+		// while()
+		// 	cout<<s.patientLDAP<<" ";
+		// cout<<endl;
 	}
 
-	patient* nextPatient(patient* p){
-
+	int nextPatient(){
 		int next=patientQ[0];
-		cout<<"this is next "<<next<<endl;
-		int i=0;
-		while(patientQ[i])
-			cout<<patientQ[i++]<<" ";
-		if(next==0)
-			return NULL;
-		ifstream fin;
-		patient* pt=new patient();
-		fin.open("../records/records.txt");
-		cout<<"here-->"<<fin.read(reinterpret_cast<char*>(pt), sizeof(patient));
-		while(fin.read(reinterpret_cast<char*>(pt), sizeof(patient)))
-			if(p->LDAP==next){
-				cout<<next;
-				return pt;
-			}	
+		return next;
 	}
 
 	void onlineDiscussion(int p){
@@ -80,10 +73,9 @@ public:
 		return;
 	}	
 	void treatPatients(){
-		
-		patient* p=new patient();
-		p=nextPatient(p);
-		if(p==NULL){
+		int next=nextPatient();
+		patient* p=new patient(next);
+		if(next==0){
 			cout<<"No patients in the queue"<<endl;
 			return;
 		}

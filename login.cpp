@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include "pharmacist.cpp"
+
 int num(char* n){
 	if(*(n+1))
 		return (*n-'0')*10 + *(n+1)-'0';
@@ -58,10 +59,10 @@ int main(){
 	if(flag){
 		cout<<endl;
 		switch(l.role){
+			case 'R': {receptionist* r=new receptionist();receptionistInit(l.num,r);break;}
 			case 'D': {doctor* d=new doctor();doctorInit(l.num,d);break;}
 			case 'P': {patient* p=new patient();patientInit(l.num,p);break;}
 			case 'F': {pharmacist* f=new pharmacist();pharmacistInit(l.num,f);break;}
-			//case 'R': {receptionistInit(num);break;}
 			default: cout<<"Error: Executable not found"<<endl;
 		}
 	}

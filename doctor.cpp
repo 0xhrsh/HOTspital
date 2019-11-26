@@ -1,6 +1,32 @@
 #include <bits/stdc++.h>
 #include "admin/classes/Dclass.cpp"
 
+
+
+void notifyAdmin(int pldap){
+	typedef struct leave{
+		int LDAP,startingMonth,startingDate,endMonth,endDate;
+	}leave;
+	ofstream fout;
+	leave s;
+	s.LDAP=pldap;
+	fout.open("admin/records/leave.txt",ios_base::app);
+	cout<<"Enter Starting Date followed by starting Month"<<endl;
+	cin>>s.startingDate>>s.startingMonth;
+	cout<<"Enter Ending Date followed by Ending Month"<<endl;
+	cin>>s.endDate>>s.endMonth;
+	fout.write(reinterpret_cast<char*>(&s), sizeof(leave));
+	fout.close();
+	ifstream fin;
+	fin.open("admin/records/leave.txt");
+	while(fin.read(reinterpret_cast<char*>(&s), sizeof(leave)))
+		cout<<s.LDAP<<" "<<s.endMonth<<" ";
+	fin.close();
+
+}
+
+
+
 patient* nextPatient(doctor* d,patient*p){
 		int next=d->patientQ[0];
 		if(next==0)
@@ -8,7 +34,6 @@ patient* nextPatient(doctor* d,patient*p){
 		ifstream fin;
 		fin.close();
 		fin.open("admin/records/records.txt");
-		//cout<<fin.is_open()<<endl;
 		patient* p1=new patient();
 		while(fin.read(reinterpret_cast<char*>(p1), sizeof(patient)))
 			if(p1->LDAP==next)
@@ -29,13 +54,10 @@ void treatPatients(doctor* d){
 	bool leave;
 	cin>>leave;
 	if(leave)
-		//notifyAdmin(p->LDAP);
+		notifyAdmin(p->LDAP);
 		d->updateRecords(p);
 		return;
 }
-
-
-
 
 void doctorInit(int num,doctor* d){
 	ifstream fin;

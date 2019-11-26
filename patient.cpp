@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
-//#include "admin/updateQueue.cpp"
 #include "receptionist.cpp"
+
 void error(int num){
 	num++;
 	cout<<endl<<"Invalid Input"<<endl;
@@ -25,7 +25,9 @@ void takeAppointment(int num){
 	cout<<endl;
 	cout<<"Enter Id to choose doctor"<<endl;
 	cin>>ind;
-	addToQueue(num,ind);
+	receptionist r;
+	r.addToQueue(num,ind);
+	r.initial_diagnosis(num);
 	return;
 	}
 

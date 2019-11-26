@@ -11,8 +11,8 @@ public:
 	long ph;
 	long emergency;
 	char record[100];
-	int temp;
-	int weight;
+	float temp;
+	float weight;
 	char rRemarks[20];
 	char dRemarks[50];
 	int medicine[20][2];

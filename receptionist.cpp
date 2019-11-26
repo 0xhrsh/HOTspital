@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 #include "doctor.cpp"
-
 //using namespace std;
 
 class receptionist
@@ -51,11 +50,6 @@ class receptionist
 		cout<<endl;
 		fin.close();
 	}
-
-
-
-
-
 	void initial_diagnosis(int ldapID)
 	{
 		float temp;
@@ -98,8 +92,6 @@ class receptionist
 
 };
 
-
-
 	void receptionistInit(int num,receptionist* r){
 		r->LDAP=num;
 		int cmd;
@@ -117,6 +109,8 @@ class receptionist
 			r->initial_diagnosis(x);
 		}
 	}
+
+
 /*int main()
 {
 	receptionist r;

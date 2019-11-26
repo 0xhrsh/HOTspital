@@ -17,14 +17,14 @@ void notifyAdmin(int pldap){
 	cin>>s.endDate>>s.endMonth;
 	fout.write(reinterpret_cast<char*>(&s), sizeof(leave));
 	fout.close();
-	
+
 	//ifstream fin;
 	//leave s1;
 	// fin.open("admin/records/leave.txt");
 	// while(fin.read(reinterpret_cast<char*>(&s1), sizeof(leave)))
 	// 	cout<<s1.LDAP<<" "<<s1.endMonth<<" "<<endl;
 	// cout<<endl;
-	fin.close();
+	//fin.close();
 
 }
 

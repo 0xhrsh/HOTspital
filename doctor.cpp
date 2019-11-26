@@ -1,6 +1,41 @@
 #include <bits/stdc++.h>
 #include "admin/classes/Dclass.cpp"
 
+patient* nextPatient(doctor* d,patient*p){
+		int next=d->patientQ[0];
+		if(next==0)
+			return NULL;
+		ifstream fin;
+		fin.close();
+		fin.open("admin/records/records.txt");
+		//cout<<fin.is_open()<<endl;
+		patient* p1=new patient();
+		while(fin.read(reinterpret_cast<char*>(p1), sizeof(patient)))
+			if(p1->LDAP==next)
+				return p1;
+		cout<<endl;
+	}
+
+void treatPatients(doctor* d){
+	patient* p=new patient();
+	p=nextPatient(d,p);
+	if(p==NULL){
+		cout<<"No patients in the queue"<<endl;
+		return;
+	}
+	cout<<endl<<"Next Patient: "<<'P'<<p->LDAP<<endl;
+	p=writePrescription(p);
+	cout<<"Medical Leave Required?"<<endl;
+	bool leave;
+	cin>>leave;
+	if(leave)
+		//notifyAdmin(p->LDAP);
+		d->updateRecords(p);
+		return;
+}
+
+
+
 
 void doctorInit(int num,doctor* d){
 	ifstream fin;
@@ -20,7 +55,7 @@ void doctorInit(int num,doctor* d){
 	cin>>x;
 	int cmd=x-'0';
 	switch(cmd){
-		case 1:{d->treatPatients();/*pushQ();*/break;}
+		case 1:{treatPatients(d);/*pushQ();*/break;}
 		case 2:{d->onlineDiscussion(num);break;}
 		case 3:{cout<<"Logged Out"<<endl;return;}
 		default: cout<<"Invalid Value"<<endl;
@@ -52,3 +87,4 @@ void doctorInit(int num,doctor* d){
 
 }
 }
+

@@ -83,7 +83,7 @@ public:
 		
 
 		p=writePrescription(p);
-		cout<<"Medical Leave Required?"<<endl;
+		cout<<"Medical Leave Required?(1/0)"<<endl;
 		bool leave;
 		cin>>leave;
 		if(leave)

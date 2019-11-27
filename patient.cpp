@@ -16,7 +16,7 @@ void readRecords(int num){
 			break;
 	}
 	fin.close();
-	cout<<"Records: "<<prr->dRemarks<<endl;
+	cout<<"Records: "<<prr->dRemarks<<endl<<endl;
 	return;
 }
 
@@ -52,7 +52,7 @@ void patientInit(int num,patient* p){
 	char x;
 	cout<<"Press 1 to Take appointment"<<endl;
 	cout<<"Press 2 for online discussion"<<endl;
-	cout<<"Press 3 to view Medical Report"<<endl;
+	cout<<"Press 3 to View Medical Report"<<endl;
 	cout<<"Press 4 to logout"<<endl;
 	cin>>x;
 	int cmd=x-'0';

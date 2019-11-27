@@ -7,16 +7,16 @@ using namespace std;
 // DO NOT TAMPER WITH
 
 class patient{
-public:
+private:
 	long ph;
 	long emergency;
+public:
 	char record[100];
 	float temp;
 	float weight;
 	char rRemarks[20];
 	char dRemarks[50];
 	int medicine[20][2];
-//public:
 	int LDAP;
 	char fname[10];
 	char lname[10];

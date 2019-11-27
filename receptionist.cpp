@@ -6,14 +6,16 @@
 void initial_diagnosis(int ldapID){
 	float temp;
 	float weight;
-	string remarks;
+	char remarks[20];
 	char remrk[20];
 	cout<<"Enter the body tempearture in Fahrenheit : ";
 	cin>>temp;
 	cout<<"\nEnter the weight in kgs : ";
 	cin>>weight;
-	//cout<<"\nEnter the remarks if any : ";
-	//cin>>remarks;
+	cout<<"\nEnter the remarks if any : ";
+	char x;
+	scanf("%c",&x);
+	fgets (remarks, 25, stdin);
 	patient p;
 	ofstream fout;			
 	fout.open("admin/records/tempFiles/tempRecords.txt");
@@ -24,7 +26,7 @@ void initial_diagnosis(int ldapID){
 		if(p.LDAP==ldapID){
 			p.temp=temp;
 			p.weight=weight;
-		//strcpy(p.rRemarks,remarks.c_str());
+		strcpy(p.rRemarks,remarks);
 		}
 		fout.write(reinterpret_cast<char*>(&p), sizeof(patient));
 	}

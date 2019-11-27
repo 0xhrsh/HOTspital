@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #include "pharmacist.cpp"
-#include "pass.cpp"
+//#include "pass.cpp"
 int num(char* n){
 	if(*(n+1))
 		return (*n-'0')*10 + *(n+1)-'0';
@@ -33,6 +33,15 @@ patient* writePrescription(patient* p){
 				cout<<med<<" is insufficient"<<endl;
 			cin>>med>>quant;
 		}
+		cout<<endl;
+		cout<<"Enter Remarks: "<<endl;
+		char dmarks[50];
+		char x;
+		scanf("%c",&x);
+		fgets (dmarks, 55, stdin);
+		//scanf ("%[^\n]%*c", dmarks);
+		//cin>>dmarks;
+		strcpy(p->dRemarks,dmarks);
 		return p;
 }
 int main(){
@@ -42,10 +51,10 @@ int main(){
 	char username[20],password[20];
 	cout<<endl<<"Enter Login Username"<<endl;
 	cin>>username;
-	// cout<<"Enter Password"<<endl;
-	// cin>>password;
-	string pass=getpass("Enter Password: ",true);
-	strcpy(password,pass.c_str());
+	cout<<"Enter Password"<<endl;
+	cin>>password;
+	// string pass=getpass("Enter Password: ",true);
+	// strcpy(password,pass.c_str());
 	login l;
 	bool flag=true;
 	while(true){

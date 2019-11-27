@@ -7,6 +7,20 @@ void error(int num){
 }
 
 
+void readRecords(int num){
+	ifstream fin;
+	patient* prr=new patient();
+	fin.open("admin/records/records.txt");
+	while(fin.read(reinterpret_cast<char*>(prr), sizeof(patient))){
+		if(prr->LDAP==num)
+			break;
+	}
+	fin.close();
+	cout<<"Records: "<<prr->dRemarks<<endl;
+	return;
+}
+
+
 int chooseDoctor(){
 	doctor d;
 	ifstream fin;
@@ -36,15 +50,17 @@ void patientInit(int num,patient* p){
 	p->LDAP=num;
 	while(true){
 	char x;
-	cout<<endl<<"Press 1 to Take appointment"<<endl;
+	cout<<"Press 1 to Take appointment"<<endl;
 	cout<<"Press 2 for online discussion"<<endl;
-	cout<<"Press 3 to logout"<<endl;
+	cout<<"Press 3 to view Medical Report"<<endl;
+	cout<<"Press 4 to logout"<<endl;
 	cin>>x;
 	int cmd=x-'0';
 	switch(cmd){
 		case 1:{takeAppointment(num);break;}
 		case 2:{p->onlineDiscussion(num);break;}
-		case 3:{cout<<"Logged Out"<<endl;return;}
+		case 3:{readRecords(num);break;}
+		case 4:{cout<<"Logged Out"<<endl;return;}
 		default: cout<<"Invalid Value"<<endl;
 	}
 }

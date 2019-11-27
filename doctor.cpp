@@ -2,8 +2,8 @@
 #include "admin/classes/Dclass.cpp"
 
 void displayMedicalRecord(patient* p){
-	cout<<"Patient Records"<<endl;
-	cout<<p->record;
+	cout<<"Receptionist Remarks: ";
+	cout<<p->rRemarks;
 	cout<<endl;
 	cout<<"Temperature: ";
 	cout<<p->temp<<endl;

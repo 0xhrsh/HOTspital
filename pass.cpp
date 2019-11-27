@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include <windows.h>
+//#include <windows.h>
 
 
 string getpass(const char *prompt, bool show_asterisk=true)

@@ -7,7 +7,7 @@ void displayMedicalRecord(patient* p){
 	cout<<endl;
 	cout<<"Receptionist Remarks"<<endl;
 	cout<<p->temp<<endl;
-	cout<<p->rRemarks;
+	//cout<<p->rRemarks;
 	cout<<endl;
 }
 
@@ -36,8 +36,6 @@ void notifyAdmin(int pldap){
 
 }
 
-
-
 patient* nextPatient(doctor* d,patient*p){
 		int next=d->patientQ[0];
 		if(next==0)
@@ -51,7 +49,7 @@ patient* nextPatient(doctor* d,patient*p){
 			if(p1->LDAP==next)
 				return p1;
 		cout<<endl;
-	}
+}
 
 void treatPatients(doctor* d){
 	patient* p=new patient();
@@ -95,13 +93,11 @@ void doctorInit(int num,doctor* d){
 		case 3:{cout<<"Logged Out"<<endl;return;}
 		default: cout<<"Invalid Value"<<endl;
 	}
-
 	doctor* d1=new doctor();
 	fin.open("admin/records/doctors.txt");
 	fout.open("admin/records/tempFiles/tempDoctors.txt");
 	int i=0;
-	while (i++<10){
-		
+	while (i++<10){		
 		fin.read(reinterpret_cast<char*>(d1), sizeof(doctor));
 		//cout<<"Updating records";
 		if(d1->LDAP==num){
@@ -119,7 +115,6 @@ void doctorInit(int num,doctor* d){
 	while(fin.read(reinterpret_cast<char*>(d1), sizeof(doctor)))
 		fout.write(reinterpret_cast<char*>(d1), sizeof(doctor));
 	fin.close();fout.close();
-
 }
 }
 

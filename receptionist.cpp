@@ -2,12 +2,46 @@
 #include "doctor.cpp"
 //using namespace std;
 
+
+void initial_diagnosis(int ldapID){
+	float temp;
+	float weight;
+	string remarks;
+	char remrk[20];
+	cout<<"Enter the body tempearture in Fahrenheit : ";
+	cin>>temp;
+	cout<<"\nEnter the weight in kgs : ";
+	cin>>weight;
+	//cout<<"\nEnter the remarks if any : ";
+	//cin>>remarks;
+	patient p;
+	ofstream fout;			
+	fout.open("admin/records/tempFiles/tempRecords.txt");
+	ifstream fin;
+	fin.open("admin/records/records.txt");
+
+	while(fin.read(reinterpret_cast<char*>(&p), sizeof(patient))){
+		if(p.LDAP==ldapID){
+			p.temp=temp;
+			p.weight=weight;
+		//strcpy(p.rRemarks,remarks.c_str());
+		}
+		fout.write(reinterpret_cast<char*>(&p), sizeof(patient));
+	}
+	fin.close();fout.close();
+	fin.open("admin/records/tempFiles/tempRecords.txt");
+	fout.open("admin/records/records.txt");
+	while(fin.read(reinterpret_cast<char*>(&p), sizeof(patient)))
+		fout.write(reinterpret_cast<char*>(&p), sizeof(patient));
+	fin.close();fout.close();
+}
+
+
 class receptionist
 {
 	public:
 	int LDAP;
-	void addToQueue(int num,int ind)
-	{
+	void addToQueue(int num,int ind){
 		cout<<"Adding to queue"<<endl;
 		doctor d;
 		ifstream fin;
@@ -50,38 +84,6 @@ class receptionist
 		cout<<endl;
 		fin.close();
 	}
-	void initial_diagnosis(int ldapID)
-	{
-		float temp;
-		float weight;
-		string remarks;
-		char remrk[20];
-		cout<<"Enter the body tempearture in Fahrenheit : ";
-		cin>>temp;
-		cout<<"\nEnter the weight in kgs : ";
-		cin>>weight;
-		cout<<"\nEnter the remarks if any : ";
-		cin>>remarks;
-		patient p;
-		ofstream fout;			
-		fout.open("admin/records/tempFiles/tempRecords.txt");
-		ifstream fin;
-		fin.open("admin/records/records.txt");
-		fin.read(reinterpret_cast<char*>(&p), sizeof(patient));
-		if(p.LDAP==ldapID)
-		{
-			p.temp=temp;
-			p.weight=weight;
-			strcpy(p.rRemarks,remarks.c_str());
-			fout.write(reinterpret_cast<char*>(&p), sizeof(patient));
-		}
-		fin.close();fout.close();
-		fin.open("admin/records/tempFiles/tempRecords.txt");
-		fout.open("admin/records/records.txt");
-		while(fin.read(reinterpret_cast<char*>(&p), sizeof(patient)))
-			fout.write(reinterpret_cast<char*>(&p), sizeof(patient));
-		fin.close();fout.close();
-	}
 	int update_hospital_inventory()
 	{
 	}
@@ -115,7 +117,7 @@ class receptionist
 				num=(cmd[1]-'0')*10 + cmd[2]-'0';
 			else
 				num=cmd[1]-'0';
-			//r->initial_diagnosis(num);
+			initial_diagnosis(num);
 		}
 	}
 

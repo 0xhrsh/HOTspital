@@ -2,16 +2,13 @@
 #include "admin/classes/Dclass.cpp"
 
 void displayMedicalRecord(patient* p){
-	ifstream fin;
-	patient* p1;
-	fin.open("admin/records/records.txt");
-	while(fin.read(reinterpret_cast<char*>(p1), sizeof(patient))){
-		if(p1->LDAP==p->LDAP){
-			cout << p1->record << endl;
-		}
-	}		
-	fin.close();
-	return;
+	cout<<"Patient Records"<<endl;
+	cout<<p->record;
+	cout<<endl;
+	cout<<"Receptionist Remarks"<<endl;
+	cout<<p->temp<<endl;
+	cout<<p->rRemarks;
+	cout<<endl;
 }
 
 void notifyAdmin(int pldap){

@@ -5,8 +5,10 @@ void displayMedicalRecord(patient* p){
 	cout<<"Patient Records"<<endl;
 	cout<<p->record;
 	cout<<endl;
-	cout<<"Receptionist Remarks"<<endl;
+	cout<<"Temperature: ";
 	cout<<p->temp<<endl;
+	cout<<"Weight: ";
+	cout<<p->weight<<endl;
 	//cout<<p->rRemarks;
 	cout<<endl;
 }
@@ -66,9 +68,33 @@ void treatPatients(doctor* d){
 	cin>>leave;
 	if(leave)
 		notifyAdmin(p->LDAP);
-		d->updateRecords(p);
-		return;
+	updateRecords(p);
+	return;
 }
+
+void updateRecords(patient* p){
+	ifstream fin;
+	ofstream fout;
+	patient* p1=new patient();
+	fin.open("admin/records/records.txt");
+	fout.open("admin/records/tempFiles/tempRecords.txt");
+	while(fin.read(reinterpret_cast<char*>(p1), sizeof(patient)))
+		if(p1->LDAP==p->LDAP)
+			fout.write(reinterpret_cast<char*>(p), sizeof(patient));
+		else
+			fout.write(reinterpret_cast<char*>(p1), sizeof(patient));
+	fin.close();fout.close();
+	patient* p2=new patient();
+	fin.open("admin/records/tempFiles/tempRecords.txt");
+	fout.open("admin/records/records.txt");
+	while(fin.read(reinterpret_cast<char*>(p2), sizeof(patient)))
+		fout.write(reinterpret_cast<char*>(p2), sizeof(patient));
+	fin.close();fout.close();
+	cout<<"Records Updated"<<endl;
+	return;				
+	}
+
+
 
 void doctorInit(int num,doctor* d){
 	ifstream fin;

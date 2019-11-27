@@ -41,6 +41,7 @@ public:
 	friend patient* findPrescription(int LDAP);
 	friend patient* writePrescription(patient* p);
 	//friend int nextPatient(patient*p);
+	friend void updateRecords(patient* p);
 	friend int chooseDoctor();//{cout<<"inside virtual"<<endl;};
 	friend void takeAppointment(int num);//{cout<<"takeAppointment virtual"<<endl;}
 	void onlineDiscussion(int p){

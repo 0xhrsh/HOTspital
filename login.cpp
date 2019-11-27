@@ -53,7 +53,7 @@ int main(){
 		}
 		if(l.role==username[0]&&num(username+1)==l.num){
 			if (strcmp(password,l.pass)==0){
-				cout<<"Logging in..";
+				cout<<"Logging in.."<<endl;
 				break;
 			}
 			else{

@@ -90,7 +90,7 @@ class receptionist
 	}
 	receptionist(){};
 
-};
+};	
 
 /*int main()
 {

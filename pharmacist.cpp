@@ -10,32 +10,33 @@ typedef struct Inventory{
 class pharmacist: public patient{
 	public:
 		int LDAP;
-		int getPatient(){
-			char pat[4];
-			cout << "Enter the patient's ID:";
-			cin >> pat;
-			if(pat[2]=='\0')
-				return (pat[1]-'0');
-			return ((pat[1]-'0')*10+(pat[2]-'0'));
-		}
+		
 		patient* getPrescription(int pat){
 			patient* p1=new patient();
 			ifstream fin;
 			fin.open("admin/records/records.txt");
-			while(fin.read(reinterpret_cast<char*>(p1), sizeof(patient)))
-				if(p1->LDAP==LDAP)
+			while(fin.read(reinterpret_cast<char*>(p1), sizeof(patient))){
+				
+				if(p1->LDAP==pat)
+				{
+					cout<<"Patient's LDAP is "<<pat<<endl;
 					return p1;
+				}
 		}
+	}
+
 		void updateInventory(patient* p){
 			ifstream fin;
 			ofstream fout;
 			inventory* in;
 			fin.open("admin/records/inventory.txt");
 			fout.open("admin/records/tempFiles/tempInventory.txt");
+			cout<<"here"<<endl;
 			while(fin.read(reinterpret_cast<char*>(in), sizeof(inventory))){
 				int i=-1;
 				while(p->medicine[++i][0])
 					if(p->medicine[i][0]==in->medicineId){
+						cout<<"Medicines given by doctor Id and quantity are"<<in->medicineId<<" "<<p->medicine[i][1];
 						(in->Quantity)-=(p->medicine[i][1]);
 						break;
 					}
@@ -76,11 +77,13 @@ void pharmacistInit(int num, pharmacist* f){
 		char cmd;
 		cin>>cmd;
 		if(cmd=='1'){
-			int pat;
-			pat=f->getPatient();
-			patient* p=f->getPrescription(pat);
+			cout<<"Enter the patient's LDAP "<<endl;
+			int id;
+			cin>>id;
+			patient* p=f->getPrescription(id);
+			
 			f->updateInventory(p);
-			cout << "medicines given to " << pat << endl;
+			//cout << "medicines given to " << id << endl;
 		}
 		else if(cmd=='2')
 			f->printInventory();

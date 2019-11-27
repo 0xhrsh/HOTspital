@@ -10,7 +10,7 @@ int main(){
 	fout.open("../records/inventory.txt");
 	for (int i = 0; i < 20; ++i){
 		inv.medicineId=i+1;   //  Anything Random
-		inv.Quantity=i*100;  //  Random
+		inv.Quantity=(i+1)*100;  //  Random
 		fout.write(reinterpret_cast<char*>(&inv), sizeof(inventory));
 	}
 	fout.close();

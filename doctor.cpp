@@ -3,11 +3,15 @@
 
 void displayMedicalRecord(patient* p){
 	ifstream fin;
-	inventory in;
-			fin.open("admin/records/inventory.txt");
-			while(fin.read(reinterpret_cast<char*>(&in), sizeof(inventory)))
-				cout<<"Medicine Id: "<<in.medicineId<<" Quantity: "<<in.Quantity<<endl;
-
+	patient* p1;
+	fin.open("admin/records/records.txt");
+	while(fin.read(reinterpret_cast<char*>(p1), sizeof(patient))){
+		if(p1->LDAP==p->LDAP){
+			cout << p1->record << endl;
+		}
+	}		
+	fin.close();
+	return;
 }
 
 void notifyAdmin(int pldap){
@@ -30,7 +34,7 @@ void notifyAdmin(int pldap){
 	// fin.open("admin/records/leave.txt");
 	// while(fin.read(reinterpret_cast<char*>(&s1), sizeof(leave)))
 	// 	cout<<s1.LDAP<<" "<<s1.endMonth<<" "<<endl;
-	// cout<<endl;
+	// cout<<endl; 
 	//fin.close();
 
 }
@@ -59,8 +63,8 @@ void treatPatients(doctor* d){
 		return;
 	}
 	cout<<endl<<"Next Patient: "<<'P'<<p->LDAP<<endl;
-	p=writePrescription(p);
 	displayMedicalRecord(p);
+	p=writePrescription(p);
 	cout<<"Medical Leave Required?"<<endl;
 	bool leave;
 	cin>>leave;

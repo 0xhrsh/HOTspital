@@ -27,7 +27,7 @@ void takeAppointment(int num){
 	cin>>ind;
 	receptionist r;
 	r.addToQueue(num,ind);
-	r.initial_diagnosis(num);
+	
 	return;
 	}
 

@@ -14,9 +14,9 @@ class pharmacist: public patient{
 			char pat[4];
 			cout << "Enter the patient's ID:";
 			cin >> pat;
-			if(pat[2])
+			if(pat[2]=='\0')
 				return (pat[1]-'0');
-			return (pat[1]-'0')*10+(pat[2]-'0');
+			return ((pat[1]-'0')*10+(pat[2]-'0'));
 		}
 		patient* getPrescription(int pat){
 			patient* p1=new patient();
@@ -58,7 +58,7 @@ class pharmacist: public patient{
 		void orderMedicine(){
 			inventory in;
 			cout<<"Enter Medicine ID and Quantity:"<<endl;
-			cin>>in.medicineId>>in.Quantity;
+			cin >> in.medicineId >> in.Quantity;
 			ofstream fout;
 			fout.open("admin/records/orderMedicine.txt",ios_base::app);
 			fout.write(reinterpret_cast<char*>(&in), sizeof(inventory));
@@ -66,20 +66,30 @@ class pharmacist: public patient{
 		}
 };
 void pharmacistInit(int num, pharmacist* f){
-	cout<<"Press 1 to give medicine"<<endl;
-	cout<<"Press 2 to view Inventory"<<endl;
-	cout<<"Press 3 to Order Medicines"<<endl;
-	char cmd;
-	cin>>cmd;
-	if(cmd=='1'){
-		int pat;
-		pat=f->getPatient();
-		patient* p=f->getPrescription(pat);
-		f->updateInventory(p);
+	while(true){
+
+		cout<<"Press 1 to give medicine"<<endl;
+		cout<<"Press 2 to view Inventory"<<endl;
+		cout<<"Press 3 to Order Medicines"<<endl;
+		cout<<"Press 4 to log out"<<endl;
+
+		char cmd;
+		cin>>cmd;
+		if(cmd=='1'){
+			int pat;
+			pat=f->getPatient();
+			patient* p=f->getPrescription(pat);
+			f->updateInventory(p);
+			cout << "medicines given to " << pat << endl;
+		}
+		else if(cmd=='2')
+			f->printInventory();
+		else if(cmd=='3'){
+			f->orderMedicine();
+			cout << "recorded the order" << endl ;
+		}
+		else if(cmd=='4')
+			return;
+		else cout<<"Invalid Input"<<endl;
 	}
-	else if(cmd=='2')
-		f->printInventory();
-	else if(cmd=='3')
-		f->orderMedicine();
-	else cout<<"Invalid Input"<<endl;
 }

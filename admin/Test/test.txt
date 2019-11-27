@@ -1,0 +1,21 @@
+
+
+## Working
+
+1. Notify admin working
+2. reading records working
+3. update queue working
+
+
+## Not Working 
+
+1. Reading only 2 medicines for some reason ()
+2. Not checking medicine ID and quantity
+3. Not updating medicine inventory
+
+
+## To be checked
+
+1. whether medical records are updated or not
+2. 
+

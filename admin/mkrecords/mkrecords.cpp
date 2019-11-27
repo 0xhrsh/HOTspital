@@ -15,7 +15,7 @@ int main(){
 		//p->fname="abc";
 		//p->lname="xyz";
 		p->LDAP =i+1;
-		cout<<p->fname<<" "<<p->LDAP<<endl;
+		//cout<<p->fname<<" "<<p->LDAP<<endl;
 		fout.write(reinterpret_cast<char*>(p), sizeof(patient));
 	}
 	fout.close();
@@ -23,13 +23,13 @@ int main(){
 	// The code below is to read the info (I made this to verify
 	// 	whether the above code works fine or not)
 
-	// patient* p1=new patient();
-	// ifstream fin;
-	// fin.open("../records/records.txt", ios::in);
-	// for (int i = 0; i < 20; ++i){
-	// 	fin.read(reinterpret_cast<char*>(p1), sizeof(patient));
-	// 	cout<<p1->fname<<" "<<p1->LDAP<<endl;
-	// }	
+	patient* p1=new patient();
+	ifstream fin;
+	fin.open("../records/records.txt", ios::in);
+	for (int i = 0; i < 20; ++i){
+		fin.read(reinterpret_cast<char*>(p1), sizeof(patient));
+		cout<<p1->fname<<" "<<p1->LDAP<<endl;
+	}	
 	
 	return 0;
 }

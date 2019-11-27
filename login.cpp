@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include "pharmacist.cpp"
+
 int num(char* n){
 	if(*(n+1))
 		return (*n-'0')*10 + *(n+1)-'0';
@@ -15,18 +16,24 @@ patient* writePrescription(patient* p){
 		int med,quant;
 		inventory ik;
 		ifstream fin;
-		fin.open("admin/records/inventory.txt");
+		
 		cout<<"Enter Medicine ID and Quantity: "<<endl;
 		cin>>med>>quant;
 		for (int i = 0; quant>0 && i<20;){
-			fin.read(reinterpret_cast<char*>(&ik), sizeof(inventory));
+			fin.open("admin/records/inventory.txt");
+			while(fin.read(reinterpret_cast<char*>(&ik), sizeof(inventory)))
+				if(ik.medicineId==med)
+					break;
+			fin.close();
 			if(ik.Quantity>=quant){
 				p->medicine[i][0]=med;
 				p->medicine[i++][1]=quant;
 			}
+			else
+				cout<<med<<" is insufficient"<<endl;
 			cin>>med>>quant;
+		}
 		return p;
-	}
 }
 int main(){
 	while(true){
@@ -58,10 +65,10 @@ int main(){
 	if(flag){
 		cout<<endl;
 		switch(l.role){
+			case 'R': {receptionist* r=new receptionist();receptionistInit(l.num,r);break;}
 			case 'D': {doctor* d=new doctor();doctorInit(l.num,d);break;}
 			case 'P': {patient* p=new patient();patientInit(l.num,p);break;}
 			case 'F': {pharmacist* f=new pharmacist();pharmacistInit(l.num,f);break;}
-			//case 'R': {receptionistInit(num);break;}
 			default: cout<<"Error: Executable not found"<<endl;
 		}
 	}

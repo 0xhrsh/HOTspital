@@ -63,34 +63,12 @@ public:
 		// cout<<endl;
 	}
 
-	int nextPatient(){
-		int next=patientQ[0];
-		return next;
-	}
 
 	void onlineDiscussion(int p){
 		cout<<"Online Discussion"<<endl;
 		return;
 	}	
-	void treatPatients(){
-		int next=nextPatient();
-		patient* p=new patient(next);
-		if(next==0){
-			cout<<"No patients in the queue"<<endl;
-			return;
-		}
-		cout<<endl<<"Next Patient: "<<'P'<<p->LDAP<<endl;
-		
-
-		p=writePrescription(p);
-		cout<<"Medical Leave Required?"<<endl;
-		bool leave;
-		cin>>leave;
-		if(leave)
-			notifyAdmin(p->LDAP);
-		updateRecords(p);
-		return;
-	}
 	friend patient* writePrescription(patient* p);   //  IN LOGIN.CPP
+	friend patient* nextPatient(doctor* d,patient* p);
 	
 };

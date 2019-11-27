@@ -92,6 +92,25 @@ class receptionist
 
 };	
 
+	void receptionistInit(int num,receptionist* r){
+		r->LDAP=num;
+		int cmd;
+		while(true){
+			cout<<"Press 1 to perform initial diagnosis"<<endl;
+			cout<<"Press 2 to logout"<<endl;
+			cin>>cmd;
+			if(cmd==2){
+				cout<<"Logging out..."<<endl; 
+				return ;
+			} 
+			cout<<"Enter the patient's LDAP id"<<endl;
+			int x;
+			cin>>x;
+			r->initial_diagnosis(x);
+		}
+	}
+
+
 /*int main()
 {
 	receptionist r;

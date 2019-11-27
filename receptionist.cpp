@@ -64,19 +64,23 @@ class receptionist
 		cin>>remarks;
 		patient p;
 		ofstream fout;			
-		fout.open("records/records.txt", ios::out);
+		fout.open("admin/records/tempFiles/tempRecords.txt");
 		ifstream fin;
-		fin.open("records/records.txt", ios::in);
+		fin.open("admin/records/records.txt");
 		fin.read(reinterpret_cast<char*>(&p), sizeof(patient));
 		if(p.LDAP==ldapID)
 		{
 			p.temp=temp;
 			p.weight=weight;
-			strcpy(remrk,remarks.c_str());
+			strcpy(p.rRemarks,remarks.c_str());
 			fout.write(reinterpret_cast<char*>(&p), sizeof(patient));
 		}
-		fin.close();
-		fout.close();
+		fin.close();fout.close();
+		fin.open("admin/records/tempFiles/tempRecords.txt");
+		fout.open("admin/records/records.txt");
+		while(fin.read(reinterpret_cast<char*>(&p), sizeof(patient)))
+			fout.write(reinterpret_cast<char*>(&p), sizeof(patient));
+		fin.close();fout.close();
 	}
 	int update_hospital_inventory()
 	{
@@ -103,10 +107,15 @@ class receptionist
 				cout<<"Logging out..."<<endl; 
 				return ;
 			} 
-			cout<<"Enter the patient's LDAP id"<<endl;
-			int x;
-			cin>>x;
-			r->initial_diagnosis(x);
+			cout<<"Enter the patient's LDAP Id (example: P10)"<<endl;
+			char cmd[3];
+			cin>>cmd;
+			int num;
+			if(cmd[2])
+				num=(cmd[1]-'0')*10 + cmd[2]-'0';
+			else
+				num=cmd[1]-'0';
+			//r->initial_diagnosis(num);
 		}
 	}
 

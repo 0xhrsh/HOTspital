@@ -46,6 +46,7 @@ patient* nextPatient(doctor* d,patient*p){
 		fin.close();
 		fin.open("admin/records/records.txt");
 		patient* p1=new patient();
+		//cout<<"-->"<<fin.read(reinterpret_cast<char*>(p1), sizeof(patient));
 		while(fin.read(reinterpret_cast<char*>(p1), sizeof(patient)))
 			if(p1->LDAP==next)
 				return p1;

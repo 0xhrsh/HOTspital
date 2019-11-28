@@ -71,7 +71,18 @@ patient* nextPatient(doctor* d,patient*p){
 		cout<<endl;
 }
 
-void treatPatients(doctor* d){
+void treatPatients(int num,doctor* d){
+	ifstream fin;
+	fin.open("admin/records/doctors.txt");
+	for (int i = 0; i < 10; ++i){
+		fin.read(reinterpret_cast<char*>(d), sizeof(doctor));
+		if(d->LDAP==num)
+			break;
+	}
+	fin.close();
+
+
+
 	patient* p=new patient();
 	p=nextPatient(d,p);
 	if(p==NULL){
@@ -118,13 +129,6 @@ void doctorInit(int num,doctor* d){
 	ifstream fin;
 	ofstream fout;
 	while(true){	
-	fin.open("admin/records/doctors.txt");
-	for (int i = 0; i < 10; ++i){
-		fin.read(reinterpret_cast<char*>(d), sizeof(doctor));
-		if(d->LDAP==num)
-			break;
-	}
-	fin.close();
 	char x;
 	cout<<"Press 1 to Treat patients"<<endl;
 	cout<<"Press 2 for online discussion"<<endl;
@@ -132,7 +136,7 @@ void doctorInit(int num,doctor* d){
 	cin>>x;
 	int cmd=x-'0';
 	switch(cmd){
-		case 1:{treatPatients(d);/*pushQ();*/break;}
+		case 1:{treatPatients(num,d);/*pushQ();*/break;}
 		case 2:{d->onlineDiscussion(num);break;}
 		case 3:{cout<<"Logged Out.."<<endl;return;}
 		default: cout<<"Invalid Value"<<endl;

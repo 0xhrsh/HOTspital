@@ -79,7 +79,7 @@ class receptionist
 			// cout<<endl;
 			if(ind==d.LDAP){
 				cout<<"Name added to queue"<<endl<<"Current Queue for doctor "<<d.LDAP<<": ";
-				while(d.patientQ[i])
+				while(d.patientQ[i]&&i<15)
 					cout<<'P'<<d.patientQ[i++]<<" ";
 			}
 		}

@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include "pharmacist.cpp"
+// #include <windows.h>
 //#include "pass.cpp"
 int num(char* n){
 	if(*(n+1))

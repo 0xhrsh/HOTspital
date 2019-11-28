@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include "pharmacist.cpp"
+// #include <windows.h>
 //#include "pass.cpp"
 int num(char* n){
 	if(*(n+1))
@@ -39,9 +40,13 @@ patient* writePrescription(patient* p){
 		char x;
 		scanf("%c",&x);
 		fgets (dmarks, 55, stdin);
+		string temp;
 		//scanf ("%[^\n]%*c", dmarks);
-		//cin>>dmarks;
+		//cin>>dmarks;y
 		strcpy(p->dRemarks,dmarks);
+		
+		temp=(string)p->record+(string)"\n"+(string)dmarks;
+		strcpy(p->record,temp.c_str());
 		return p;
 }
 int main(){

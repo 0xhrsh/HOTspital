@@ -6,11 +6,3 @@
 2. reading records working
 3. update queue working
 
-
-## Not Working 
-
-## To be checked
-
-1. whether medical records are updated or not
-2. 
-

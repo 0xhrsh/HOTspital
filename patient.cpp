@@ -16,7 +16,9 @@ void readRecords(int num){
 			break;
 	}
 	fin.close();
-	cout<<"Records: "<<prr->dRemarks<<endl<<endl;
+	cout<<"Last Remarks: "<<prr->dRemarks<<endl;
+	cout<<"Full Records: "<<prr->record<<endl;
+
 	return;
 }
 

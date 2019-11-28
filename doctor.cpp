@@ -1,6 +1,21 @@
 #include <bits/stdc++.h>
+#include <string>
 #include "admin/classes/Dclass.cpp"
-
+string to_string(int x){
+	char* ret=new char[4];
+	ret[0]=' ';
+	ret[1]=x/10+'0';
+	ret[2]=x%10+'0';
+	ret[3]='\0';
+	return (string)ret;
+}
+string to_strng(int x){
+	char* ret=new char[3];
+	ret[0]=x/10+'0';
+	ret[1]=x%10+'0';
+	ret[2]='\0';
+	return (string)ret;
+}
 void displayMedicalRecord(patient* p){
 	cout<<"Receptionist Remarks: ";
 	cout<<p->rRemarks;
@@ -26,6 +41,9 @@ void notifyAdmin(int pldap){
 	cout<<"Enter Ending Date followed by Ending Month"<<endl;
 	cin>>s.endDate>>s.endMonth;
 	fout.write(reinterpret_cast<char*>(&s), sizeof(leave));
+	string send=(string)"notifyAdmin.py P"+to_strng(pldap)+to_string(s.startingDate)+to_string(s.startingMonth)+to_string(s.endDate)+to_string(s.endMonth);
+	cout<<endl;
+	system(send.c_str());
 	fout.close();
 
 	//ifstream fin;

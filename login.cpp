@@ -51,6 +51,9 @@ patient* writePrescription(patient* p){
 }
 int main(){
 	while(true){
+	cout<<"\n\n===========================================================\n";
+	cout<<"\t\tWELCOME TO IITJ HEALTH CARE CENTER\n";
+	cout<<"==============================================================\n";
 	ifstream fin;
 	fin.open("admin/records/login.txt");
 	char username[20],password[20];
@@ -81,10 +84,10 @@ int main(){
 	if(flag){
 		cout<<endl;
 		switch(l.role){
-			case 'R': {receptionist* r=new receptionist();receptionistInit(l.num,r);break;}
-			case 'D': {doctor* d=new doctor();doctorInit(l.num,d);break;}
-			case 'P': {patient* p=new patient();patientInit(l.num,p);break;}
-			case 'F': {pharmacist* f=new pharmacist();pharmacistInit(l.num,f);break;}
+			case 'R': {cout<<"========== WELCOME RECEPTIONIST ==========\n";receptionist* r=new receptionist();receptionistInit(l.num,r);break;}
+			case 'D': {cout<<"============ WELCOME DOCTOR ==============\n";doctor* d=new doctor();doctorInit(l.num,d);break;}
+			case 'P': {cout<<"============ WELCOME PATIENT =============\n";patient* p=new patient();patientInit(l.num,p);break;}
+			case 'F': {cout<<"============ WELCOME PHARMACIST ==========\n";pharmacist* f=new pharmacist();pharmacistInit(l.num,f);break;}
 			default: cout<<"Error: Executable not found"<<endl;
 		}
 	}

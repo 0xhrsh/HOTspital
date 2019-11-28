@@ -10,7 +10,7 @@ void initial_diagnosis(int ldapID){
 	char remrk[20];
 	cout<<"Enter the body tempearture in Fahrenheit : ";
 	cin>>temp;
-	cout<<"\nEnter the weight in kgs : ";
+	cout<<"\nEnter the weight in KGs : ";
 	cin>>weight;
 	cout<<"\nEnter the remarks if any : ";
 	char x;

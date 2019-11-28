@@ -35,7 +35,7 @@ int chooseDoctor(){
 	}
 }
 void takeAppointment(int num){
-	cout<<endl<<"Doctors Available"<<endl;
+	cout<<endl<<"===Doctors Available==="<<endl;
 	chooseDoctor();
 	int ind;
 	cout<<endl;

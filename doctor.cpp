@@ -17,12 +17,12 @@ string to_strng(int x){
 	return (string)ret;
 }
 void displayMedicalRecord(patient* p){
-	cout<<"Receptionist Remarks: ";
+	cout<<"Receptionist Remarks : ";
 	cout<<p->rRemarks;
 	cout<<endl;
-	cout<<"Temperature: ";
+	cout<<"Temperature : ";
 	cout<<p->temp<<endl;
-	cout<<"Weight: ";
+	cout<<"Weight : ";
 	cout<<p->weight<<endl;
 	//cout<<p->rRemarks;
 	cout<<endl;
@@ -75,13 +75,13 @@ void treatPatients(doctor* d){
 	patient* p=new patient();
 	p=nextPatient(d,p);
 	if(p==NULL){
-		cout<<"No patients in the queue"<<endl;
+		cout<<"No patients in the queue..  "<<endl;
 		return;
 	}
-	cout<<endl<<"Next Patient: "<<'P'<<p->LDAP<<endl;
+	cout<<endl<<" Next Patient: "<<'P'<<p->LDAP<<endl;
 	displayMedicalRecord(p);
 	p=writePrescription(p);
-	cout<<"Medical Leave Required?"<<endl;
+	cout<<"Medical Leave Required?\n(Press 1 for Yes)\n(Press 0 for No)"<<endl;
 	bool leave;
 	cin>>leave;
 	if(leave)
@@ -108,7 +108,7 @@ void updateRecords(patient* p){
 	while(fin.read(reinterpret_cast<char*>(p2), sizeof(patient)))
 		fout.write(reinterpret_cast<char*>(p2), sizeof(patient));
 	fin.close();fout.close();
-	cout<<"Records Updated"<<endl;
+	cout<<"==Records Updated=="<<endl;
 	return;				
 	}
 
@@ -134,7 +134,7 @@ void doctorInit(int num,doctor* d){
 	switch(cmd){
 		case 1:{treatPatients(d);/*pushQ();*/break;}
 		case 2:{d->onlineDiscussion(num);break;}
-		case 3:{cout<<"Logged Out"<<endl;return;}
+		case 3:{cout<<"Logged Out.."<<endl;return;}
 		default: cout<<"Invalid Value"<<endl;
 	}
 	doctor* d1=new doctor();

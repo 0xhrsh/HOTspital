@@ -35,7 +35,7 @@ int main(int argc, char** argv){
 		fin.read(reinterpret_cast<char*>(&d), sizeof(doctor));
 		if(d.available){
 		//int x=d.patient.back();
-		cout<<d.name<<" "<<d.LDAP<<" "<<d.speciality<<" "<<d.patientQ[0]<<"here"<<endl;
+		cout<<d.name<<" "<<d.LDAP<<" "<<d.speciality<<" "<<d.patientQ[0]<<" here"<<endl;
 		}
 	}
 	fin.close();

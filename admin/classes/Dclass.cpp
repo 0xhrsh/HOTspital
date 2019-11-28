@@ -20,50 +20,6 @@ public:
 		for (int i = 0; i < 15; ++i)
 			patientQ[i]=0;	
 	}
-
-	void updateRecords(patient* p){
-		ifstream fin;
-		ofstream fout;
-		patient* p1;
-		fin.open("../records/records.txt");
-		fout.open("../records/tempFiles/tempRecords.txt");
-		while(fin.read(reinterpret_cast<char*>(p1), sizeof(patient)))
-			if(p1->LDAP==p->LDAP)
-				fout.write(reinterpret_cast<char*>(p), sizeof(patient));
-			else
-				fout.write(reinterpret_cast<char*>(p1), sizeof(patient));
-		fin.close();fout.close();
-		fin.open("../records/tempFiles/tempRecords.txt");
-		fout.open("../records/records.txt");
-		while(fin.read(reinterpret_cast<char*>(p1), sizeof(patient)))
-			fout.write(reinterpret_cast<char*>(p1), sizeof(patient));
-		fin.close();fout.close();
-		return;				
-	}
-	void notifyAdmin(int x){
-		struct leave{
-			int patientLDAP,startingDate,startingMonth,endDate,endMonth;
-		}s;
-		s.patientLDAP=x;
-		cout<<"Starting date (DD,MM): "<<endl;
-		//cin>>s.startingDate>>s.startingMonth;
-		cout<<"End date (DD,MM): "<<endl;
-		//cin>>s.endDate>>s.endMonth;
-		ofstream fout;
-		fout.open("admin/records/leave.txt",ios_base::app);
-		//string s2="reinterpret_cast<char*>(&s), sizeof(leave)";
-		cout<<fout.write(reinterpret_cast<char*>(&s),sizeof(s));
-		fout.close();
-		ifstream fin;
-		fin.open("admin/records/leave.txt");
-		cout<<"leave here----> "<<fin.read(reinterpret_cast<char*>(&s), sizeof(leave));
-		fin.close();
-		// while()
-		// 	cout<<s.patientLDAP<<" ";
-		// cout<<endl;
-	}
-
-
 	void onlineDiscussion(int p){
 		cout<<"Online Discussion"<<endl;
 		return;

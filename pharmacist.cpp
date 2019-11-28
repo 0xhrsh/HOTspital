@@ -5,65 +5,66 @@ typedef struct Inventory{
 	int medicineId;
 	int Quantity;
 }inventory;
-		
+	
+
+void updateInventory(patient* p){
+	ifstream fin;
+	ofstream fout;
+	inventory in;
+	fin.open("admin/records/inventory.txt");
+	fout.open("admin/records/tempFiles/tempInventory.txt");
+	//cout<<fin.read(reinterpret_cast<char*>(&in), sizeof(inventory))<<endl;
+	while(fin.read(reinterpret_cast<char*>(&in), sizeof(inventory))){
+		int i=-1;
+		while(p->medicine[++i][0])
+			if(p->medicine[i][0]==in.medicineId){
+				cout<<"Medicines given by doctor Id and quantity are "<<p->medicine[i][0]<<" "<<p->medicine[i][1]<<endl;
+				(in.Quantity)-=p->medicine[i][1];
+				break;
+			}
+		fout.write(reinterpret_cast<char*>(&in), sizeof(inventory));
+	}
+	fin.close();fout.close();
+	fin.open("admin/records/tempFiles/tempInventory.txt");
+	fout.open("admin/records/inventory.txt");
+	while(fin.read(reinterpret_cast<char*>(&in), sizeof(inventory)))
+		fout.write(reinterpret_cast<char*>(&in), sizeof(inventory));
+	fin.close();fout.close();
+}
+
 
 class pharmacist: public patient{
 	public:
 		int LDAP;
-		int getPatient(){
-			char pat[4];
-			cout << "Enter the patient's ID:";
-			cin >> pat;
-			if(pat[2]=='\0')
-				return (pat[1]-'0');
-			return ((pat[1]-'0')*10+(pat[2]-'0'));
-		}
 		patient* getPrescription(int pat){
 			patient* p1=new patient();
 			ifstream fin;
 			fin.open("admin/records/records.txt");
-			while(fin.read(reinterpret_cast<char*>(p1), sizeof(patient)))
-				if(p1->LDAP==LDAP)
+			while(fin.read(reinterpret_cast<char*>(p1), sizeof(patient))){	
+				if(p1->LDAP==pat){
+					cout<<"Patient's LDAP is "<<pat<<endl;
 					return p1;
+				}
 		}
-		void updateInventory(patient* p){
-			ifstream fin;
-			ofstream fout;
-			inventory* in;
-			fin.open("admin/records/inventory.txt");
-			fout.open("admin/records/tempFiles/tempInventory.txt");
-			while(fin.read(reinterpret_cast<char*>(in), sizeof(inventory))){
-				int i=-1;
-				while(p->medicine[++i][0])
-					if(p->medicine[i][0]==in->medicineId){
-						(in->Quantity)-=(p->medicine[i][1]);
-						break;
-					}
-				fout.write(reinterpret_cast<char*>(in), sizeof(inventory));
-			}
-			fin.close();fout.close();
-			fin.open("admin/records/tempFiles/tempInventory.txt");
-			fout.open("admin/records/inventory.txt");
-			while(fin.read(reinterpret_cast<char*>(in), sizeof(inventory)))
-				fout.write(reinterpret_cast<char*>(in), sizeof(inventory));
-			fin.close();fout.close();
-		}
-		void printInventory(){
-			ifstream fin;
-			inventory in;
-			fin.open("admin/records/inventory.txt");
-			while(fin.read(reinterpret_cast<char*>(&in), sizeof(inventory)))
-				cout<<"Medicine Id: "<<in.medicineId<<" Quantity: "<<in.Quantity<<endl;
-		}
-		void orderMedicine(){
-			inventory in;
-			cout<<"Enter Medicine ID and Quantity:"<<endl;
-			cin >> in.medicineId >> in.Quantity;
-			ofstream fout;
-			fout.open("admin/records/orderMedicine.txt",ios_base::app);
-			fout.write(reinterpret_cast<char*>(&in), sizeof(inventory));
-			fout.close();
-		}
+	}
+	void printInventory(){
+		ifstream fin;
+		inventory in;
+		fin.close();
+		fin.open("admin/records/inventory.txt");
+		while(fin.read(reinterpret_cast<char*>(&in), sizeof(inventory)))
+			cout<<"Medicine Id: "<<in.medicineId<<" Quantity: "<<in.Quantity<<endl;
+		fin.close();
+	}
+	void orderMedicine(){
+		inventory in;
+		cout<<"Enter Medicine ID and Quantity:"<<endl;
+		cin >> in.medicineId >> in.Quantity;
+		ofstream fout;
+		fout.open("admin/records/orderMedicine.txt",ios_base::app);
+		fout.write(reinterpret_cast<char*>(&in), sizeof(inventory));
+		fout.close();
+	}
 };
 void pharmacistInit(int num, pharmacist* f){
 	while(true){
@@ -73,20 +74,33 @@ void pharmacistInit(int num, pharmacist* f){
 		cout<<"Press 3 to Order Medicines"<<endl;
 		cout<<"Press 4 to log out"<<endl;
 
-		char cmd;
+		char cmd='0';
 		cin>>cmd;
 		if(cmd=='1'){
-			int pat;
-			pat=f->getPatient();
-			patient* p=f->getPrescription(pat);
-			f->updateInventory(p);
-			cout << "medicines given to " << pat << endl;
+			cout<<"Enter the patient's LDAP (example: P10)"<<endl;
+			int id;
+			char cmd[4];
+			cin>>cmd;
+			if(cmd[2]=='\0'){
+				//cout<<"NotHere";
+				id=cmd[1]-'0';
+			}
+			else{
+				//cout<<"Here";
+				id=(cmd[1]-'0')*10+cmd[2]-'0';
+			}
+			patient* p=f->getPrescription(id);
+			int i=-1;
+			// while(p->medicine[++i][0])
+			// 	cout<<p->medicine[i][0]<<" "<<p->medicine[i][1]<<endl;
+			updateInventory(p);
+			cout << "medicines given to " << id << endl;
 		}
 		else if(cmd=='2')
 			f->printInventory();
 		else if(cmd=='3'){
 			f->orderMedicine();
-			cout << "recorded the order" << endl ;
+			cout << "Order Recieved" << endl ;
 		}
 		else if(cmd=='4')
 			return;

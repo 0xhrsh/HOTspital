@@ -12,7 +12,7 @@ int main(){
 		string lname="xyz";
 		strcpy(p->fname,fname.c_str());
 		strcpy(p->lname,lname.c_str());
-		//p->fname="abc";
+		p->record[0]='\0';
 		//p->lname="xyz";
 		p->LDAP =i+1;
 		//cout<<p->fname<<" "<<p->LDAP<<endl;
